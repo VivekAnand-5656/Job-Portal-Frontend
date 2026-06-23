@@ -39,7 +39,9 @@ const Login = () => {
         password:""
       })
       if(data.role === "candidate" ){
-        navigate("/")
+        navigate("/home")
+      } else{
+        navigate("/recruiter")
       }
 
     } catch (error) {

@@ -36,7 +36,7 @@ const Signup = () => {
         password: "",
         role: ""
       })
-      navigate("/login")
+      navigate("/")
 
     } catch (error) {
       console.log(`Error:- ${error}`)
@@ -112,7 +112,7 @@ const Signup = () => {
         >
           {loading ? "Registering...." : "Register"}
         </button>
-      <p>already have an account ? <span onClick={()=>navigate("/login")} >Login Here</span></p>
+      <p>already have an account ? <span onClick={()=>navigate("/")} >Login Here</span></p>
       <p>{error}</p>
       </form>
     </div>

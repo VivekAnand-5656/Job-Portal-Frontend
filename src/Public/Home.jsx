@@ -28,6 +28,7 @@ const Home = () => {
     }
   ]
 
+  
   const apibase = "https://job-portal-project-b2b0.onrender.com"
   const fetchJobs = async () => {
     try {

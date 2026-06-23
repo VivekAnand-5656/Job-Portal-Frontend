@@ -118,7 +118,9 @@ const Profile = () => {
     return (
         <div className="max-w-6xl flex flex-col mx-auto p-6 space-y-6">
 
-            <button className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl self-end ' >Update Profile</button>
+            <button 
+            onClick={()=>navigate("/updateprofile")}
+            className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl self-end ' >Update Profile</button>
             {/* Profile Header */}
             <div className="bg-white rounded-2xl shadow-md p-6 flex justify-between items-start">
                 <div>
