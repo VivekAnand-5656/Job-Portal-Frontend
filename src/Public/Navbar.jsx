@@ -31,7 +31,7 @@ const Navbar = () => {
         <li><NavLink to="recruiter" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >Home</NavLink></li>
         <li><NavLink to="myposts" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >My Posts</NavLink></li>
         <li><NavLink to="allcandidates" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >All Candidates</NavLink></li>
-        <li><NavLink to="allapplicants" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >All Applicants</NavLink></li>
+        <li><NavLink to="applicants" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >All Applicants</NavLink></li>
         <li><NavLink to="postjob" className={({ isActive }) => isActive ? " text-[#943CF3] flex justify-center items-center gap-1  " : " text-[#000000] flex justify-center items-center gap-1 "} >Post Job <MdAddBox/></NavLink></li>
          
       </ul>

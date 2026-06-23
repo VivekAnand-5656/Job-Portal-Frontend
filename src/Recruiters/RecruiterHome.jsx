@@ -50,7 +50,6 @@ const RecruiterHome = () => {
                 }
             )
             setSearchCandidates(response.data || [])
-            console.log(`Data ${response.data}`);
 
 
         } catch (error) {
@@ -60,6 +59,46 @@ const RecruiterHome = () => {
         }
     }
 
+    // ============== Fetch Candidate By Id - View Candidate Detaisl =================
+    const [candidateId, setCandidateId] = useState(null)
+    const [findCandidate, setFindCandidate] = useState({})
+    const viewCandidateDetail = async () => {
+        try {
+            const response = await axios.get(`${apibase}/recruiter/viewCandidate/${candidateId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            console.log(`Candidate by id:- ${response.data}`)
+            setFindCandidate(response.data)
+        } catch (error) {
+            console.log(`Error:- ${error}`)
+        }
+    }
+
+    // ================= Update Status ===============
+    // const [candidateId,setCandidateId] = useState(null)
+    const updateStatus = async (candidateId,canStatus)=>{
+        try {
+            const response = await axios.put(`${apibase}/recruiter/hiringstatusupdate/${candidateId}`,
+                {},
+                {
+                    params:{
+                        status:canStatus
+                    },
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    }
+                }
+            )
+            await fetchCandidates()
+            alert(`Candidate ${canStatus}`)
+        } catch (error) {
+            console.log(`Error:- ${error}`)
+        }
+    }
     useEffect(() => {
         if (token) {
             fetchCandidates()
@@ -108,9 +147,7 @@ const RecruiterHome = () => {
 
                                     <div
                                         key={index}
-                                        className="w-64 h-[320px] bg-white rounded-2xl p-4 flex flex-col gap-3
-          shadow-md hover:shadow-xl hover:-translate-y-1
-          hover:bg-[#943CF3] hover:text-white transition-all duration-300"
+                                        className="w-64 h-[320px] bg-white rounded-2xl p-4 flex flex-col gap-3 shadow-md transition-all duration-300"
                                     >
 
                                         {/* Profile Image */}
@@ -180,12 +217,170 @@ const RecruiterHome = () => {
 
                                         {/* Button */}
                                         <button
+                                            onClick={() => setCandidateId(candidate._id)}
                                             className="mt-auto bg-black text-white text-sm py-2 rounded-lg
             flex justify-center items-center gap-1
             hover:bg-gray-800 transition"
                                         >
                                             View Profile <GrFormNextLink />
                                         </button>
+
+                                        {/* =========== View Profile ============ */}
+                                        {
+                                            candidateId === candidate._id && (
+                                                <div className=' w-full overflow-scroll job p-2 h-full left-0 border flex flex-col justify-center items-center fixed top-0 z-50 bg-[#ffffff] ' >
+                                                    <button onClick={() => setCandidateId(null)}
+                                                    className=' self-end '
+                                                    >Close</button>
+                                                    <h1>Candidate Profile</h1>
+                                                    <div
+                                                        key={candidate._id}
+                                                        className="border w-[80%] rounded-lg p-4 mb-4 bg-white shadow-sm"
+                                                    >
+                                                        {/* Header */}
+                                                        <div className="flex justify-between items-start">
+                                                            <div>
+                                                                <h3 className="text-xl font-semibold">
+                                                                    {candidate.name}
+                                                                </h3>
+                                                                <p className="text-gray-600">
+                                                                    {candidate.headline}
+                                                                </p>
+                                                            </div>
+
+                                                            <span className={
+                                                                candidate.status === "Shortlisted" ?
+                                                                    "px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm"
+                                                                    : candidate.status === "Rejected" ?
+                                                                        "px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm"
+                                                                        : candidate.status === "Hired" ?
+                                                                            "px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                                                                            : "px-3 py-1 bg-orange-100 text-black-700 rounded-full text-sm"
+                                                            }>
+                                                                {
+                                                                    candidate.status
+                                                                }
+                                                            </span>
+                                                        </div>
+
+                                                        {/* Basic Details */}
+                                                        <div className="mt-3">
+                                                            <p><strong>Email:</strong> {candidate.email}</p>
+                                                            <p><strong>Mobile:</strong> {candidate.mobile}</p>
+                                                            <p>
+                                                                <strong>Location:</strong>{" "}
+                                                                {candidate.city}, {candidate.state}
+                                                            </p>
+                                                            <p>
+                                                                <strong>Expected Salary:</strong>{" "}
+                                                                {candidate.expected_salary}
+                                                            </p>
+                                                            <p>
+                                                                <strong>Work Mode:</strong>{" "}
+                                                                {candidate.preferred_work_mode}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Bio */}
+                                                        <div className="mt-3">
+                                                            <p className="text-gray-700">
+                                                                {candidate.bio}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Skills */}
+                                                        <div className="mt-3">
+                                                            <h4 className="font-semibold mb-2">Skills</h4>
+
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {candidate.skills?.map((skill, index) => (
+                                                                    <span
+                                                                        key={index}
+                                                                        className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                                                                    >
+                                                                        {skill}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Education */}
+                                                        {candidate.education?.length > 0 && (
+                                                            <div className="mt-4">
+                                                                <h4 className="font-semibold mb-2">
+                                                                    Education
+                                                                </h4>
+
+                                                                {candidate.education.map((edu, index) => (
+                                                                    <div key={index} className="border rounded p-2">
+                                                                        <p>
+                                                                            <strong>{edu.degree}</strong>
+                                                                        </p>
+                                                                        <p>{edu.institution_name}</p>
+                                                                        <p>{edu.cgpa_percentage}</p>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
+
+                                                        {/* Project */}
+                                                        {candidate.projects?.length > 0 && (
+                                                            <div className="mt-4">
+                                                                <h4 className="font-semibold mb-2">
+                                                                    Latest Project
+                                                                </h4>
+
+                                                                <div className="border rounded p-2">
+                                                                    <p className="font-medium">
+                                                                        {candidate.projects[0].title}
+                                                                    </p>
+
+                                                                    <p className="text-sm text-gray-600 mt-1">
+                                                                        {candidate.projects[0].description}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        )}
+
+                                                        {/* Buttons */}
+                                                        <div className="flex gap-3 mt-4">
+                                                            <a
+                                                                href={candidate.resume_url}
+                                                                target="_blank"
+                                                                className="px-4 py-2 bg-blue-600 text-white rounded"
+                                                            >
+                                                                View Resume
+                                                            </a>
+
+                                                            <a
+                                                                href={candidate.linkedin_url}
+                                                                target="_blank"
+                                                                className="px-4 py-2 bg-gray-800 text-white rounded"
+                                                            >
+                                                                LinkedIn
+                                                            </a>
+
+                                                            <button
+                                                                onClick={() => updateStatus(candidate._id, "Shortlisted")}
+                                                                className="px-4 py-2 bg-green-600 text-white rounded">
+                                                                Shortlist
+                                                            </button>
+
+                                                            <button
+                                                                onClick={() => updateStatus(candidate._id, "Rejected")}
+                                                                className="px-4 py-2 bg-red-600 text-white rounded">
+                                                                Reject
+                                                            </button>
+                                                            <button
+                                                                onClick={() => updateStatus(candidate._id, "Hired")}
+                                                                className="px-4 py-2 bg-blue-600 text-white rounded">
+                                                                Hire
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
 
                                     </div>
 

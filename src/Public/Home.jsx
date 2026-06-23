@@ -189,7 +189,7 @@ const Home = () => {
 
               <button 
               onClick={()=>{
-                navigate("applyjob")
+                navigate("/applyjob")
                 jobSearchById(job._id)
               }
               }

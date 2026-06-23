@@ -27,7 +27,7 @@ const ApplyJob = () => {
                 }
             )
             alert("Applied Successfully")
-            navigate("/")
+            navigate("/home")
             
         } catch (error) {
             console.log(`Error:- ${error}`);

@@ -16,6 +16,8 @@ import MyPosts from './Recruiters/MyPosts'
 import AllCandidates from './Recruiters/AllCandidates'
 import PostJob from './Recruiters/PostJob'
 import RecruiterProfile from './Recruiters/RecruiterProfile'
+import Applicants from './Recruiters/Applicants'
+import CandidateProfile from './Recruiters/CandidateProfile'
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
               <Route path="allcandidates" element={<AllCandidates />} />
               <Route path="postjob" element={<PostJob />} />
               <Route path="recruiterprofile" element={<RecruiterProfile />} />
+              <Route path="applicants" element={<Applicants />} />
+              <Route path="applicantprofile" element={<CandidateProfile />} />
             </Route>
 
           </Routes>
