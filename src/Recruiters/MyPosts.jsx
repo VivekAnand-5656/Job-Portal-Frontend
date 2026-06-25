@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
+import clogo from '../assets/clogo.png'
 
 
 
@@ -88,13 +89,13 @@ const MyPosts = () => {
 
     // ============ View Job Post ==============
     const [viewId, setViewId] = useState(null)
-    const [post,setPost] = useState({})
-    const viewPost = async ()=>{
+    const [post, setPost] = useState({})
+    const viewPost = async () => {
         try {
             const response = await axios.get(`${apibase}/recruiter/viewPost/${viewId}`,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
@@ -104,21 +105,21 @@ const MyPosts = () => {
             }
             setViewId(null)
             console.log(`Data:- ${response.data}`);
-            
+
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
 
     // ================== Delete Skill ==============
-    const deleteSkill = async (postId,skil)=>{
+    const deleteSkill = async (postId, skil) => {
         try {
             const response = await axios.patch(`${apibase}/recruiter/deleteskill/${postId}?skill=${skil}`,
                 {},
-                { 
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
@@ -127,21 +128,21 @@ const MyPosts = () => {
             alert("Skill Deleted")
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
     // =============== edit Skill =====
-    const [skil,setSkil] = useState("")
-    const editSkill = async (postId)=>{
+    const [skil, setSkil] = useState("")
+    const editSkill = async (postId) => {
         try {
             const data = {
-                skills:[skil]
+                skills: [skil]
             }
             const response = await axios.patch(`${apibase}/recruiter/editskill/${postId}`,
                 data,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
@@ -149,19 +150,19 @@ const MyPosts = () => {
             fetchPosts()
             viewPost()
             setSkil("")
-            
-            
+
+
         } catch (error) {
             console.log(`Error:- ${error}`)
         }
     }
     // =================== Delete Post ========
-    const deletePost = async (postId)=>{
+    const deletePost = async (postId) => {
         try {
             const response = await axios.delete(`${apibase}/recruiter/deletepost/${postId}`,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
@@ -169,9 +170,37 @@ const MyPosts = () => {
             fetchPosts()
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
+    // ============= Logo Upload =========
+    // const [logo, setLogo] = useState(null)
+    // const [selectedFiles, setSelectedFiles] = useState({});
+    // const uploadLogo = async (postId, file) => {
+    //     if (!file) {
+    //         alert("Please Select File")
+    //         return
+    //     }
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append("file", file)
+    //         const response = await axios.put(`${apibase}/recruiter/uploadlogo/${postId}`,
+    //             formData,
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`
+    //                 }
+    //             }
+    //         ) 
+    //         await fetchPosts()
+    //         alert("Logo Uploaded")
+    //         setSelectedFiles({})
+
+    //     } catch (error) {
+    //         console.log(`Error:- ${error}`)
+    //     }
+    // }
+
     useEffect(() => {
         if (token) {
             fetchPosts()
@@ -187,10 +216,41 @@ const MyPosts = () => {
                     myposts?.length > 0 ? (
                         myposts.map((post, index) => (
                             <div key={post._id} className="w-full max-w-md bg-white rounded-xl shadow-md p-5 flex flex-col justify-between gap-3 hover:shadow-xl transition">
-                                <MdDelete className=' self-end cursor-pointer text-[#ff0808]  ' 
-                                onClick={()=>deletePost(post._id)}
+                                <MdDelete className=' self-end cursor-pointer text-[#ff0808]  '
+                                    onClick={() => deletePost(post._id)}
                                 />
                                 {/* Top Title */}
+                                {/* <div className=" w-full p-1 relative h-20  rounded-full flex justify-between items-center  ">
+
+                                    <img
+                                        src={post?.logo_url ? `${post.logo_url}` : `${clogo}`}
+                                        alt="profile"
+                                        className=" absolute w-20 h-20 rounded-full bg-white"
+                                    />
+                                     <label
+                                        htmlFor="logoUpload"
+                                        className=" absolute  left-10 -bottom-2 p-1.5 bg-[#943CF3] text-white rounded-full cursor-pointer"
+                                    >
+                                        📷
+                                    </label>
+
+                                    <input
+                                        id="logoUpload"
+                                        type="file"
+                                        accept=".jpg,.png"
+                                        onChange={(e) =>
+                                            setSelectedFiles({ 
+                                                [post._id]: e.target.files[0]
+                                            })
+                                        }
+                                        className="hidden"
+                                    />
+                                    <button
+                                        onClick={() => uploadLogo(post._id, selectedFiles[post._id])}
+                                        className='  absolute right-0 rounded bg-[#943CF3] p-1 text-white '
+                                    >Upload Logo</button>
+
+                                </div> */}
                                 <h1 className="text-xl font-bold text-gray-800">
                                     {post.jobtitle}
                                 </h1>
@@ -267,7 +327,7 @@ const MyPosts = () => {
                                 {
                                     viewId === post._id && (
                                         <div className=' w-[50vw] overflow-scroll flex flex-col  job h-full fixed top-0 left-75 p-2 rounded-2xl bg-[#ffffff] border ' >
-                                            <button onClick={() => setViewId(null)} className=' self-end cursor-pointer ' ><IoMdCloseCircle/></button>
+                                            <button onClick={() => setViewId(null)} className=' self-end cursor-pointer ' ><IoMdCloseCircle /></button>
                                             <div>
                                                 <div className="w-full min-h-screen bg-[#f8f3ff] flex justify-center p-6">
 
@@ -309,11 +369,11 @@ const MyPosts = () => {
                                                                 <p>
                                                                     <span className="font-semibold">Applicants:</span>{" "}
                                                                     {
-                                                                        post.applied_candidates?.length != 0 
-                                                                        ? post.applied_candidates?.length 
-                                                                        : " No Applied "
+                                                                        post.applied_candidates?.length != 0
+                                                                            ? post.applied_candidates?.length
+                                                                            : " No Applied "
                                                                     } {" "}
-                                                                     Candidates
+                                                                    Candidates
                                                                 </p>
 
                                                             </div>
@@ -366,19 +426,19 @@ const MyPosts = () => {
                                                                         key={index}
                                                                         className="bg-[#943CF3] text-white px-4 flex justify-center items-center gap-2 py-2 rounded-full text-sm"
                                                                     >
-                                                                        {skill} <span 
-                                                                        onClick={()=>deleteSkill(post._id,skill.trim())}
-                                                                        className=' text-[#ffe30e] cursor-pointer ' ><IoMdCloseCircle/></span>
+                                                                        {skill} <span
+                                                                            onClick={() => deleteSkill(post._id, skill.trim())}
+                                                                            className=' text-[#ffe30e] cursor-pointer ' ><IoMdCloseCircle /></span>
                                                                     </span>
                                                                 ))}
 
                                                                 <div className=' w-full border outline-0 rounded p-2 ' >
-                                                                    <input type="text" name='skills' placeholder='Add Skills...'  
-                                                                    value={skil}
-                                                                    onChange={(e)=>setSkil(e.target.value)}
+                                                                    <input type="text" name='skills' placeholder='Add Skills...'
+                                                                        value={skil}
+                                                                        onChange={(e) => setSkil(e.target.value)}
                                                                     />
-                                                                    <button className=' p-1.5 rounded bg-[#943CF3] ' 
-                                                                    onClick={()=>editSkill(post._id)}
+                                                                    <button className=' p-1.5 rounded bg-[#943CF3] '
+                                                                        onClick={() => editSkill(post._id)}
                                                                     >Update Skills</button>
                                                                 </div>
 
@@ -390,7 +450,7 @@ const MyPosts = () => {
 
                                                             <p className="text-gray-500">
                                                                 Posted on: {new Date(post.createdAt).toLocaleDateString("en-GB")}
-                                                            </p> 
+                                                            </p>
 
                                                         </div>
 

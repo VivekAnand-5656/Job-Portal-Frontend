@@ -62,28 +62,7 @@ const RecruiterProfile = () => {
             console.log(`Error:- ${error}`)
         }
     }
-    // ============= Logo Upload =========
-    const [logo,setLogo] = useState(null)
-    const uploadLogo = async (postId,file)=>{
-        try {
-            const formData = new FormData();
-            formData.append("file",file)
-            const response = await axios.put(`${apibase}/recruiter/uploadlogo/${postId}`,
-                formData,
-                {
-                    headers:{
-                        Authorization:`Bearer ${token}`
-                    }
-                }
-            )
-            await fetchProfile()
-            alert("Logo Uploaded")
-            
-        } catch (error) {
-            console.log(`Error:- ${error}`)
-        }
-    }
-    // ==== Upload baki hai 
+    
 
     useEffect(() => {
         if (token) {
@@ -98,18 +77,7 @@ const RecruiterProfile = () => {
                 {/* Banner */}
                 <div className="w-full max-w-5xl h-52 bg-[#943CF3] rounded-3xl relative">
 
-                    <div className="absolute -bottom-12 left-10">
-                        {/* {
-
-                        } */}
-                        <img
-                            src=""
-                            alt="profile"
-                            className="w-28 h-28 rounded-full border-4 border-white bg-white"
-                        />
-                        <RiImageAddFill className=' absolute right-0 bottom-5 text-3xl cursor-pointer ' />
-
-                    </div>
+                   
 
                 </div>
 
@@ -223,24 +191,24 @@ const RecruiterProfile = () => {
                             onClick={() => setIsEdit(false)}
                         >Close</button>
                         <h1>Update Profile</h1>
-                        <form className=' flex flex-col  ' 
-                        onSubmit={editProfile}
+                        <form className=' flex flex-col  '
+                            onSubmit={editProfile}
                         >
-                            <input type="text" name='company' placeholder='Enter Company Name' 
-                            value={formdata.company}
-                            onChange={handleChange}
+                            <input type="text" name='company' placeholder='Enter Company Name'
+                                value={formdata.company}
+                                onChange={handleChange}
                             />
                             <input type="email" name='email' placeholder='Enter Email..'
-                            value={formdata.email}
-                            onChange={handleChange}
+                                value={formdata.email}
+                                onChange={handleChange}
                             />
-                            <input type="text" name='websiteurl' placeholder='Website URL' 
-                            value={formdata.websiteurl}
-                            onChange={handleChange}
+                            <input type="text" name='websiteurl' placeholder='Website URL'
+                                value={formdata.websiteurl}
+                                onChange={handleChange}
                             />
                             <textarea name="description"
-                            value={formdata.description}
-                            onChange={handleChange}
+                                value={formdata.description}
+                                onChange={handleChange}
                             ></textarea>
                             <input type="text" name='city' placeholder='City' value={formdata.city} onChange={handleChange} />
                             <input type="text" name='state' placeholder='State' value={formdata.state} onChange={handleChange} />

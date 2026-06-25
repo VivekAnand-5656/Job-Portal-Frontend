@@ -55,6 +55,7 @@ const UpdatePost = () => {
 
         }
     }
+    
     return (
         <div>
             <form

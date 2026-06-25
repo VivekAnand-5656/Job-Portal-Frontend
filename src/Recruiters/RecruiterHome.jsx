@@ -5,9 +5,11 @@ import { GrFormNextLink } from "react-icons/gr";
 import { AuthContext } from '../Context/AuthContext';
 import axios from 'axios';
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const RecruiterHome = () => {
     const { token } = useContext(AuthContext)
+    const navigate = useNavigate()
     const [candidates, setCandidates] = useState([])
     const [expandedSkills, setExpandedSkills] = useState({});
 
@@ -116,6 +118,7 @@ const RecruiterHome = () => {
                         <h1 className=' text-5xl flex flex-col font-bold ' >Find.Connect. <span className=' text-[#943CF3] ' >Hire The Best Talent</span></h1>
                         <p>Discover pre-vetted candidates, streamline your hiring process and build winning teams faster.</p>
                         <button
+                        onClick={()=>navigate("/allcandidates")}
                             className=' w-[40%] bg-[#943CF3] p-1.5 text-white font-semibold border hover:bg-[#ffffff] hover:text-black hover:border hover:border-[#943CF3] transition-all duration-500 ease-in-out rounded cursor-pointer ' >Find Candidates</button>
                     </div>
                     {/* -------- Right ------- */}
