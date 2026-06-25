@@ -5,7 +5,7 @@ import { GiCancel } from "react-icons/gi";
 
 
 const UpdateEducation = () => {
-  const { token,showUpdateEdu,setShowUpdateEdu } = useContext(AuthContext)
+  const { token, showUpdateEdu, setShowUpdateEdu } = useContext(AuthContext)
 
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
@@ -34,7 +34,7 @@ const UpdateEducation = () => {
     })
   }
 
-  const handleSubmit = async (txt) => { 
+  const handleSubmit = async (txt) => {
 
     try {
       setLoading(true)
@@ -77,13 +77,13 @@ const UpdateEducation = () => {
   }
 
   return (
-    <div className="w-[50%] bg-transparent min-h-screen flex flex-col  justify-center items-center  p-5">
-        <button 
-        onClick={()=>setShowUpdateEdu(false)}
-        className=' self-end cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel/></button>
+    <div className="sm:w-[50%] w-full border-5 overflow-scroll job bg-[#13e0ff]  min-h-screen flex flex-col  justify-center items-center  p-5">
+      <button
+        onClick={() => setShowUpdateEdu(false)}
+        className=' self-end cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel /></button>
       <form
         onSubmit={handleSubmit}
-        className="w-full h-full max-w-2xl bg-white p-6 rounded-2xl shadow-md"
+        className="w-full h-full bg-[#ebe70f] p-6 rounded-2xl shadow-md overflow-scroll border-5 "
       >
         <h1 className="text-2xl font-bold ">
           Add Education

@@ -5,7 +5,7 @@ import { GiCancel } from "react-icons/gi";
 
 
 const AddEducation = () => {
-  const { token,showEdu,setShowEdu } = useContext(AuthContext)
+  const { token, showEdu, setShowEdu } = useContext(AuthContext)
 
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
@@ -77,15 +77,15 @@ const AddEducation = () => {
   }
 
   return (
-    <div className="w-[50%] bg-transparent min-h-screen flex flex-col  justify-center items-center  p-5">
-        <button 
-        onClick={()=>setShowEdu(false)}
-        className=' self-end cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel/></button>
+    <div className="sm:w-[50%]  w-full h-full bg-[#ffffff] sm:min-h-screen flex flex-col gap-2  justify-center items-center  sm:p-5 p-2 ">
+      <button
+        onClick={() => setShowEdu(false)}
+        className=' self-end text-2xl cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel /></button>
       <form
         onSubmit={handleSubmit}
-        className="w-full h-full max-w-2xl bg-white p-6 rounded-2xl shadow-md"
+        className="w-full   h-full max-w-2xl bg-white sm:p-6 p-1.5 sm:rounded-2xl rounded shadow-md"
       >
-        <h1 className="text-2xl font-bold ">
+        <h1 className="text-2xl font-bold text-center ">
           Add Education
         </h1>
 
@@ -97,7 +97,7 @@ const AddEducation = () => {
             placeholder="Level (10th, 12th, Graduation)"
             value={education.level}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -106,7 +106,7 @@ const AddEducation = () => {
             placeholder="Institution Name"
             value={education.institution_name}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -115,7 +115,7 @@ const AddEducation = () => {
             placeholder="Degree"
             value={education.degree}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -124,7 +124,7 @@ const AddEducation = () => {
             placeholder="Field of Study"
             value={education.field_of_study}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -133,7 +133,7 @@ const AddEducation = () => {
             placeholder="Start Year"
             value={education.start_year}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -143,7 +143,7 @@ const AddEducation = () => {
             value={education.end_year}
             onChange={handleChange}
             disabled={education.currently_studying}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -152,7 +152,7 @@ const AddEducation = () => {
             placeholder="CGPA / Percentage"
             value={education.cgpa_percentage}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
           <input
@@ -161,7 +161,7 @@ const AddEducation = () => {
             placeholder="Location"
             value={education.location}
             onChange={handleChange}
-            className="border p-2 rounded"
+            className="border border-[#943CF3] outline-none p-2 rounded w-full  "
           />
 
         </div>
@@ -172,7 +172,7 @@ const AddEducation = () => {
           value={education.description}
           onChange={handleChange}
           rows="4"
-          className="border p-2 rounded w-full mt-4"
+          className="border border-[#943CF3] outline-none p-2 rounded w-full  "
         />
 
         <div className="flex items-center gap-2 mt-4">
@@ -181,6 +181,7 @@ const AddEducation = () => {
             name="currently_studying"
             checked={education.currently_studying}
             onChange={handleChange}
+            
           />
           <label>Currently Studying</label>
         </div>

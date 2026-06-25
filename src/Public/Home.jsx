@@ -104,7 +104,7 @@ const Home = () => {
         {/* ----------- Top Banner ------------ */}
         <div className='bg-[#e2c7ff] w-full  h-[90vh] flex flex-col gap-4 justify-center items-center  ' >
           <div className=' text-center p-2 ' >
-            <h1 className=' sm:text-[3em] text-[1em] font-bold ' >Find The Job That Fits Your Life</h1>
+            <h1 className=' sm:text-[3em] text-[2em] font-bold ' >Find The Job That Fits Your Life</h1>
             <p>Discover opportunities, build your career and achieve your goals with JobHunt.</p>
           </div>
           <div className='bg-[#ffffffaa] w-[80%] flex justify-center items-center rounded-2xl  ' >

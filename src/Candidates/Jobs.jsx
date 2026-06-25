@@ -22,6 +22,7 @@ const Jobs = () => {
   // ---------------- FILTER JOBS ----------------
   const jobfilter = async (txt) => {
     try {
+
       if (!txt) {
         setFilterJob(null);
         return;
@@ -41,14 +42,14 @@ const Jobs = () => {
     fetchJobs();
   }, []);
 
-   
+
   const displayJobs = filterJob ?? jobs;
 
   return (
-    <div className="w-full h-screen flex justify-between items-center">
+    <div className="w-full sm:h-screen  flex sm:flex-row flex-col justify-between items-center">
 
       {/* ---------------- LEFT FILTER ---------------- */}
-      <div className="w-[15%] rounded-r-2xl text-white flex flex-col p-2 gap-4 h-full bg-[#7c01ff]">
+      <div className="sm:w-[15%] w-full sm:rounded-r-2xl text-white flex sm:flex-col flex-row overflow-scroll job p-2 sm:gap-4 gap-2 h-full bg-[#7c01ff]">
 
         <button
           className="cursor-pointer flex justify-center items-center font-semibold"
@@ -74,6 +75,7 @@ const Jobs = () => {
           <option value="Data Analyst">Data Analyst</option>
           <option value="Software Engineer">Software Engineer</option>
         </select>
+
         {/* ---------- Skills ------- */}
         <select
           name="skills"
@@ -120,6 +122,7 @@ const Jobs = () => {
           <option value="Figma">Figma</option>
           <option value="Adobe XD">Adobe XD</option>
         </select>
+
         {/* -------------- Work Mode ----------- */}
         <select
           name="work_mode"
@@ -133,6 +136,7 @@ const Jobs = () => {
           <option value="Onsite">Onsite</option>
 
         </select>
+
         {/* ------------- Location --------------- */}
         <select
           name="location"
@@ -162,14 +166,14 @@ const Jobs = () => {
       </div>
 
       {/* ---------------- RIGHT SIDE ---------------- */}
-      <div className="w-[85%] h-full p-2 flex flex-col gap-2">
+      <div className="sm:w-[85%] w-full  h-full p-2 flex flex-col gap-2">
 
-        <h1 className="text-3xl font-bold">
+        <h1 className="sm:text-3xl  font-bold">
           Find Jobs That Match Your Skills
         </h1>
 
         {/* ---------------- JOB LIST ---------------- */}
-        <div className="job w-full bg-[#d2a8fe] p-2 flex gap-2 flex-wrap rounded-2xl overflow-scroll">
+        <div className="job w-full bg-[#d2a8fe] p-2 flex gap-2 flex-wrap rounded-2xl justify-center overflow-scroll">
 
           {displayJobs.length === 0 ? (
             <h2 className="text-xl font-semibold p-4">

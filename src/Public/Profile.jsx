@@ -13,12 +13,12 @@ import UpdateEducation from '../Candidates/UpdateEducation';
 
 
 const Profile = () => {
-    const { token, showEdu, setShowEdu,showPro,showUpdateEdu,setShowUpdateEdu } = useContext(AuthContext)
+    const { token, showEdu, setShowEdu, showPro, showUpdateEdu, setShowUpdateEdu } = useContext(AuthContext)
     const navigate = useNavigate()
     const [profile, setProfile] = useState({})
-      
+
     // ----- Add Skill --- 
-    const [skil,setSkil] = useState("")
+    const [skil, setSkil] = useState("")
 
     const apibase = "https://job-portal-project-b2b0.onrender.com"
     const getProfile = async () => {
@@ -37,77 +37,81 @@ const Profile = () => {
             console.log(`Error:- ${error}`);
         }
     }
+
     // ================ Delete Skill ==========
-    const deleteSkill = async (skillTxt)=>{
+    const deleteSkill = async (skillTxt) => {
         try {
             const response = await axios.delete(`${apibase}/candidate/deleteskill/${skillTxt}`,
-                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
-                 }
+                }
             )
             getProfile()
             alert("Skill Delete")
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
+
     // ======== Add Skill ======
-    const addSkill = async ()=>{
+    const addSkill = async () => {
         try {
             const data = {
-                skills:[skil]
+                skills: [skil]
             }
-            const response = await axios.patch(`${apibase}/candidate/updateskill`,data,
+            const response = await axios.patch(`${apibase}/candidate/updateskill`, data,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
             alert("Skill Added")
-            getProfile() 
+            getProfile()
             setSkil("")
 
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
+
     // =========== Delete Education ==== 
-    const deleteEducation = async (leveltxt)=>{
+    const deleteEducation = async (leveltxt) => {
         try {
             const response = await axios.delete(`${apibase}/candidate/deleteeducation/${leveltxt}`,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
             alert("Delete Education")
-            getProfile() 
+            getProfile()
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
+
     // =========== Delete Project ==== 
-    const deleteProject = async (projecttxt)=>{
+    const deleteProject = async (projecttxt) => {
         try {
             const response = await axios.delete(`${apibase}/candidate/deleteproject/${projecttxt}`,
                 {
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
             alert("Delete Project")
-            getProfile() 
+            getProfile()
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
     useEffect(() => {
@@ -115,12 +119,14 @@ const Profile = () => {
             getProfile()
         }
     }, [token])
+
     return (
         <div className="max-w-6xl flex flex-col mx-auto p-6 space-y-6">
 
-            <button 
-            onClick={()=>navigate("/updateprofile")}
-            className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl self-end ' >Update Profile</button>
+            <button
+                onClick={() => navigate("/updateprofile")}
+                className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl self-end ' >Update Profile</button>
+
             {/* Profile Header */}
             <div className="bg-white rounded-2xl shadow-md p-6 flex justify-between items-start">
                 <div>
@@ -139,7 +145,7 @@ const Profile = () => {
                 </div>
 
                 <div className="text-right">
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                    <span className="bg-green-100 text-green-700 p-0.5 rounded-full">
                         {
                             profile.is_open_to_work ? (
                                 "Open To Work"
@@ -180,9 +186,9 @@ const Profile = () => {
                                     key={index}
                                     className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full flex justify-center items-center gap-2 "
                                 >
-                                    {skill} <span 
-                                    onClick={()=>deleteSkill(skill)}
-                                    className=' cursor-pointer text-[#ff0000] ' ><TiDeleteOutline /></span>
+                                    {skill} <span
+                                        onClick={() => deleteSkill(skill)}
+                                        className=' cursor-pointer text-[#ff0000] ' ><TiDeleteOutline /></span>
                                 </span>
                             ))
                         ) : (
@@ -190,19 +196,20 @@ const Profile = () => {
 
                         )
                     }
-            {/* === Show Skill Add ==== */}
+
+                    {/* === Show Skill Add ==== */}
                     <div className=' w-full border p-2 rounded ' >
-                        <input type="text" 
-                        value={skil}
-                        onChange={(e)=>setSkil(e.target.value)}
-                        className=' outline-none rounded w-[95%] '
-                        placeholder=' Add Skill.... ' />
+                        <input type="text"
+                            value={skil}
+                            onChange={(e) => setSkil(e.target.value)}
+                            className=' outline-none rounded w-[95%] '
+                            placeholder=' Add Skill.... ' />
 
                     </div>
                 </div>
-                <button 
-                onClick={addSkill}
-                className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl  ' >Add Skills</button>
+                <button
+                    onClick={addSkill}
+                    className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl  ' >Add Skills</button>
             </div>
 
             {/* Education */}
@@ -214,12 +221,12 @@ const Profile = () => {
                         profile.education.map((edu, index) => (
                             <div key={index} className="border-l-4 border-purple-500 pl-4 mb-4">
                                 <div className=' flex justify-end text-2xl items-center gap-3 ' >
-                                    <MdDelete 
-                                    onClick={()=>deleteEducation(edu.level)}
-                                    className=' cursor-pointer text-[#ff0000] ' />
-                                    <FiEdit 
-                                    // onClick={()=>setShowUpdateEdu(true)}
-                                    className=' cursor-pointer  ' />
+                                    <MdDelete
+                                        onClick={() => deleteEducation(edu.level)}
+                                        className=' cursor-pointer text-[#ff0000] ' />
+                                    <FiEdit
+                                        // onClick={()=>setShowUpdateEdu(true)}
+                                        className=' cursor-pointer  ' />
                                 </div>
 
                                 <h3 className="font-semibold">{edu.degree}</h3>
@@ -250,8 +257,8 @@ const Profile = () => {
             } */}
             {
                 showEdu ? (
-                    <div className='w-full fixed top-0  flex justify-center items-center right-0 ' >
-                        <AddEducation />
+                    <div className='w-screen h-screen overflow-auto  bg-[#ffffff] fixed top-5 p-2  flex justify-center items-center right-0 ' >
+                        <AddEducation    />
                     </div>
                 ) : null
             }
@@ -266,8 +273,8 @@ const Profile = () => {
                             <div key={index} className="border rounded-xl p-4 mb-4">
                                 <div className=' flex justify-end text-2xl items-center gap-3 ' >
                                     <MdDelete
-                                    onClick={()=>deleteProject(project.title)}
-                                    className=' cursor-pointer text-[#ff0000] ' />
+                                        onClick={() => deleteProject(project.title)}
+                                        className=' cursor-pointer text-[#ff0000] ' />
                                     <FiEdit className=' cursor-pointer  ' />
                                 </div>
                                 <h3 className="font-semibold text-lg">
@@ -306,12 +313,12 @@ const Profile = () => {
                         <p className="text-gray-400">No Projects added</p>
                     )
                 }
-                <button 
-                onClick={()=>setShowPro(true)}
-                className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl  ' >Add Projects</button>
+                <button
+                    onClick={() => setShowPro(true)}
+                    className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl  ' >Add Projects</button>
             </div>
-            {/* ================= Show Project ========= */}
 
+            {/* ================= Show Project ========= */}
             {
                 showPro ? (
                     <div className='w-full fixed top-0  flex justify-center items-center right-0 ' >
@@ -321,17 +328,17 @@ const Profile = () => {
             }
 
             {/* Resume */}
-            <div className="bg-white flex justify-between rounded-2xl gap-2  shadow-md p-6">
+            <div className="bg-white flex sm:flex-row flex-wrap justify-between rounded-2xl gap-2  shadow-md p-6">
                 <h2 className="text-xl font-bold mb-4">Resume</h2>
-                <div className=' flex gap-4 ' >
+                <div className=' flex sm:gap-4 gap-2 sm:flex-row flex-wrap  ' >
                     <a
                         href={profile.resume_url}
                         target="_blank"
-                        className="bg-purple-600 text-white px-4 py-2 rounded-lg flex justify-center items-center gap-2 "
+                        className="bg-purple-600 text-white sm:px-4 px-0.5 py-2 rounded-lg flex justify-center items-center sm:gap-2 gap-1 "
                     >
                         View Resume <IoEyeSharp />
                     </a>
-                    <button className=' bg-[#943CF3] text-white cursor-pointer p-2 rounded-2xl self-end ' >Update Resume</button>
+                    <button className=' bg-[#943CF3] text-white cursor-pointer sm:p-2 p-1 rounded-2xl self-end ' >Update Resume</button>
                 </div>
 
             </div>
@@ -340,7 +347,7 @@ const Profile = () => {
             <div className="bg-white rounded-2xl shadow-md p-6">
                 <h2 className="text-xl font-bold mb-4">Links</h2>
 
-                <div className="flex gap-4">
+                <div className="flex sm:flex-row flex-wrap gap-2 sm:gap-4">
                     <a href={profile.linkedin_url} target="_blank">
                         LinkedIn
                     </a>
