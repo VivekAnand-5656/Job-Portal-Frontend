@@ -12,26 +12,26 @@ import { IoIosCloseCircle } from "react-icons/io";
 const Navbar = () => {
   const { token, role, logout } = useContext(AuthContext)
   const navigate = useNavigate()
-  const [isHam,setIsHam] = useState(false)
+  const [isHam, setIsHam] = useState(false)
 
   const logingout = () => {
     logout()
     navigate("/")
   }
   return (
-    <div className=' w-full h-[10vh]  flex  sm:justify-around justify-between sm:p-0 p-2 items-center bg-[#ffffff] ' >
-      <h1 className=' font-bold ' >JOB<span className=' text-[#943CF3] ' >HUNT</span> </h1>
-       {/* HAMBURGER */}
-       {
-        isHam?(
-          <IoIosCloseCircle onClick={()=>setIsHam(false)} className=' sm:hidden flex  ' />
-        ):(
-          <GiHamburgerMenu onClick={()=>setIsHam(true)} className=' sm:hidden flex  ' />
+    <div className=' w-full h-[10vh] flex  sm:justify-around justify-between sm:p-0 p-2 items-center bg-[#ffffff] ' >
+      <h1 className=' font-bold sm:text-2xl text-[1.2rem] ' >JOB<span className=' text-[#943CF3] ' >HUNT</span> </h1>
+      {/* HAMBURGER */}
+      {
+        isHam ? (
+          <IoIosCloseCircle onClick={() => setIsHam(false)} className=' sm:hidden flex  ' />
+        ) : (
+          <GiHamburgerMenu onClick={() => setIsHam(true)} className=' sm:hidden flex  ' />
         )
-       }
+      }
       {
         role === "candidate" ? (
-          <ul className={`${isHam?"flex ":"hidden"} sm:flex-row flex-col w-full sm:w-auto sm:h-full h-auto absolute sm:static top-10 sm:z-0 z-50 bg-[#ffffff]  font-semibold justify-center items-center sm:gap-4 gap-1.5 sm:shadow-xl p-2 sm:rounded-2xl`} >
+          <ul className={`${isHam ? "flex " : "hidden"} sm:flex sm:flex-row flex-col w-full sm:w-auto sm:h-full h-auto absolute sm:static top-10 sm:z-0 z-50 bg-[#ffffff]  font-semibold justify-center items-center sm:gap-4 gap-1.5 sm:shadow-xl p-2 sm:rounded-2xl`} >
             <li><NavLink to="home" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >Home</NavLink></li>
             <li><NavLink to="alljobs" className={({ isActive }) => isActive ? " text-[#943CF3] " : "text-[#000000] "} >Jobs</NavLink></li>
             <li><NavLink to="appliedjobs" className={({ isActive }) => isActive ? " text-[#943CF3] " : "text-[#000000] "} >Applied Jobs</NavLink></li>
@@ -39,7 +39,7 @@ const Navbar = () => {
 
           </ul>
         ) : (
-          <ul className=' flex font-semibold justify-center items-center gap-4 shadow-xl p-2 rounded-2xl ' >
+          <ul className={`${isHam?"flex":"hidden"} sm:flex sm:flex-row flex-col w-full sm:w-auto sm:h-full h-auto absolute sm:static top-10 sm:z-0 z-50 bg-[#ffffff] font-semibold justify-center items-center sm:gap-4 gap-1.5 sm:shadow-xl p-2 sm:rounded-2xl`} >
             <li><NavLink to="recruiter" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >Home</NavLink></li>
             <li><NavLink to="myposts" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >My Posts</NavLink></li>
             <li><NavLink to="allcandidates" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >All Candidates</NavLink></li>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
       {
         token ? (
-          <ul className={` ${isHam?"flex":"hidden"} sm:h-full sm:flex-row flex-col absolute sm:static top-42 sm:w-auto w-full bg-[#ffffff] justify-center items-center gap-4 font-semibold`} >
+          <ul className={` ${isHam ? "flex" : "hidden"} sm:flex sm:h-full sm:flex-row sm:z-0 z-50 flex-col absolute sm:static top-50 sm:w-auto w-full bg-[#ffffff] justify-center items-center gap-4 font-semibold`} >
             <li onClick={logingout} ><NavLink className=" bg-[#943CF3] text-white px-1.5 rounded flex justify-center items-center border-[#ffffff] border hover:bg-[#ffffff] hover:text-[#943CF3]  hover:border-[#943CF3] transition-all duration-300 ease-in-out " >Logout</NavLink></li>
             {
               role === "candidate" ? (
@@ -72,7 +72,7 @@ const Navbar = () => {
         )
       }
 
-     
+
     </div>
   )
 }

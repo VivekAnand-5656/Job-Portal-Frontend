@@ -82,16 +82,16 @@ const RecruiterHome = () => {
 
     // ================= Update Status ===============
     // const [candidateId,setCandidateId] = useState(null)
-    const updateStatus = async (candidateId,canStatus)=>{
+    const updateStatus = async (candidateId, canStatus) => {
         try {
             const response = await axios.put(`${apibase}/recruiter/hiringstatusupdate/${candidateId}`,
                 {},
                 {
-                    params:{
-                        status:canStatus
+                    params: {
+                        status: canStatus
                     },
-                    headers:{
-                        Authorization:`Bearer ${token}`
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 }
             )
@@ -111,33 +111,37 @@ const RecruiterHome = () => {
     return (
         <>
             <div className=' w-full h-auto flex flex-col justify-center items-center ' >
+
                 {/* ------------- Top Banner --------- */}
-                <div className=' w-[80%] h-screen p-4 flex   rounded-2xl justify-arround gap-3   items-center ' >
+                <div className=' sm:w-[80%] w-full sm:h-screen  sm:p-4 p-2 flex sm:flex-row flex-col  sm:rounded-2xl  justify-arround gap-3   items-center ' >
                     {/* -------- Left ------- */}
-                    <div className=' w-[50%] h-full  flex flex-col justify-center p-4 ' >
+                    <div className=' sm:w-[50%] w-full h-full  flex flex-col justify-center p-4 ' >
                         <h1 className=' text-5xl flex flex-col font-bold ' >Find.Connect. <span className=' text-[#943CF3] ' >Hire The Best Talent</span></h1>
                         <p>Discover pre-vetted candidates, streamline your hiring process and build winning teams faster.</p>
                         <button
-                        onClick={()=>navigate("/allcandidates")}
+                            onClick={() => navigate("/allcandidates")}
                             className=' w-[40%] bg-[#943CF3] p-1.5 text-white font-semibold border hover:bg-[#ffffff] hover:text-black hover:border hover:border-[#943CF3] transition-all duration-500 ease-in-out rounded cursor-pointer ' >Find Candidates</button>
                     </div>
                     {/* -------- Right ------- */}
-                    <div className=' w-[50%] h-full  flex items-center  justify-center p-4 ' >
+                    <div className='sm:flex hidden w-[50%] h-full  items-center  justify-center p-4 ' >
                         <img src={girlemp} alt="employee"
                             className='w-[80%] h-[70%]  ' />
                     </div>
                 </div>
+
                 {/* --------------- Featured Candidates ------------- */}
                 <div className="bg-[#e2c7ff] w-full min-h-screen flex flex-col  justify-center gap-6 p-6 rounded-2xl">
+
                     <div className=' w-full flex justify-center items-center gap-2 ' >
                         <input type="search" name="search" placeholder='Search Candidates...'
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className=' w-[40%] bg-[#ffffff] outline-0 p-2 rounded  ' />
+                            className=' sm:w-[40%] w-[90%] bg-[#ffffff] outline-0 p-2 rounded  ' />
                         <button className=' cursor-pointer '
                             onClick={() => candidateSearch(search)}
                         ><FaSearch /></button>
                     </div>
+
                     <div className="bg-[#e2c7ff] w-full min-h-screen flex flex-wrap  justify-center gap-6 p-6 rounded-2xl">
                         {
                             displayjobs.length === 0 ? (
@@ -233,7 +237,7 @@ const RecruiterHome = () => {
                                             candidateId === candidate._id && (
                                                 <div className=' w-full overflow-scroll job p-2 h-full left-0 border flex flex-col justify-center items-center fixed top-0 z-50 bg-[#ffffff] ' >
                                                     <button onClick={() => setCandidateId(null)}
-                                                    className=' self-end '
+                                                        className=' self-end '
                                                     >Close</button>
                                                     <h1>Candidate Profile</h1>
                                                     <div
@@ -393,6 +397,7 @@ const RecruiterHome = () => {
                     </div>
 
                 </div>
+
             </div>
         </>
     )
