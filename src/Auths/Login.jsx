@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import logimg from '../assets/login.png'
 
 const Login = () => {
   const { login,token } = useContext(AuthContext);
@@ -50,22 +51,24 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
-  }; 
-  // if (token){
-  //   console.log(`User Role :- ${role}`)
-  //   console.log(`User Login :- ${isLogin}`)
-  // }
+  };  
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-full h-screen flex sm:flex-row flex-col items-center justify-center bg-gray-100">
+      <div className=" w-[50%] flex justify-center items-center overflow-hidden " >
+        <img src={logimg} alt=""
+        className=" w-full h-full "
+        />
+      </div>
 
       <form
         onSubmit={handleLogin}
-        className="bg-white p-6 rounded-xl shadow-md w-80"
+        className="bg-[#943CF3] h-[70%] text-white p-6 rounded-xl shadow-md sm:w-[30%] w-[70%] "
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Login
+        <h2 className="text-2xl text-[#ffffff] font-bold mb-4 text-center">
+          Welcome Back
         </h2>
+        <p>Sign in to access your account, manage applications, track job opportunities, and continue your career journey.</p>
 
         {error && (
           <p className="text-red-500 text-sm mb-2">{error}</p>
@@ -78,7 +81,7 @@ const Login = () => {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 border rounded mb-3 outline-none"
+          className="w-full p-2 bg-[#ffffff] text-black placeholder:text-black   rounded mb-3 outline-none"
         />
 
         {/* PASSWORD */}
@@ -88,18 +91,18 @@ const Login = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full p-2 border rounded mb-3 outline-none"
+          className="w-full p-2 bg-[#ffffff] text-black placeholder:text-black   rounded mb-3 outline-none"
         />
 
         {/* BUTTON */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-purple-600 text-white p-2 rounded hover:bg-purple-700"
+          className="w-full bg-[#ffffff] text-black p-2 rounded hover:bg-[#b675fb] hover:text-white font-bold cursor-pointer transition-all duration-500 ease-in-out "
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-        <p>Don't have account ? <span onClick={()=>navigate("/signup")} >Create Account</span> </p>
+        <p>Don't have account ? <span onClick={()=>navigate("/signup")} className=" cursor-pointer " >Create Account</span> </p>
       </form>
     </div>
   );
