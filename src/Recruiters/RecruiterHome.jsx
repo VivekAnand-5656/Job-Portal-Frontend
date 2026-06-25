@@ -6,6 +6,8 @@ import { AuthContext } from '../Context/AuthContext';
 import axios from 'axios';
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { IoMdCloseCircle } from "react-icons/io";
+
 
 const RecruiterHome = () => {
     const { token } = useContext(AuthContext)
@@ -235,14 +237,14 @@ const RecruiterHome = () => {
                                         {/* =========== View Profile ============ */}
                                         {
                                             candidateId === candidate._id && (
-                                                <div className=' w-full overflow-scroll job p-2 h-full left-0 border flex flex-col justify-center items-center fixed top-0 z-50 bg-[#ffffff] ' >
+                                                <div className=' sm:w-[50vw] w-full overflow-scroll flex    flex-col  job h-full fixed top-0 sm:left-75 left-0 sm:p-2 p-1 sm:rounded-2xl bg-[#ffffff] z-50  ' >
                                                     <button onClick={() => setCandidateId(null)}
-                                                        className=' self-end '
-                                                    >Close</button>
-                                                    <h1>Candidate Profile</h1>
+                                                        className=' self-end text-2xl '
+                                                    ><IoMdCloseCircle/></button>
+                                                    <h1 className=' text-[1.2rem] font-bold ' >Candidate Profile</h1>
                                                     <div
                                                         key={candidate._id}
-                                                        className="border w-[80%] rounded-lg p-4 mb-4 bg-white shadow-sm"
+                                                        className="border sm:w-[80%] w-full rounded-lg p-4 mb-4 bg-white shadow-sm"
                                                     >
                                                         {/* Header */}
                                                         <div className="flex justify-between items-start">
@@ -350,7 +352,7 @@ const RecruiterHome = () => {
                                                         )}
 
                                                         {/* Buttons */}
-                                                        <div className="flex gap-3 mt-4">
+                                                        <div className="flex gap-3 mt-4 overflow-x-scroll job ">
                                                             <a
                                                                 href={candidate.resume_url}
                                                                 target="_blank"
