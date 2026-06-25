@@ -6,9 +6,6 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import clogo from '../assets/clogo.png'
 
-
-
-
 const MyPosts = () => {
     const { token } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -31,6 +28,7 @@ const MyPosts = () => {
             console.log(`Error:- ${error}`);
         }
     }
+
     // =========== Edit Posts =========
     const [isEdit, setIsEdit] = useState(null)
     const [formData, setFormData] = useState({
@@ -50,6 +48,7 @@ const MyPosts = () => {
             ...formData, [e.target.name]: e.target.value
         })
     }
+
     const jobPost = async (e) => {
         e.preventDefault()
         const payload = {
@@ -131,6 +130,7 @@ const MyPosts = () => {
 
         }
     }
+
     // =============== edit Skill =====
     const [skil, setSkil] = useState("")
     const editSkill = async (postId) => {
@@ -156,6 +156,7 @@ const MyPosts = () => {
             console.log(`Error:- ${error}`)
         }
     }
+
     // =================== Delete Post ========
     const deletePost = async (postId) => {
         try {
@@ -206,9 +207,10 @@ const MyPosts = () => {
             fetchPosts()
         }
     }, [token])
+
     return (
-        <div>
-            <h1>
+        <div className=' w-full p-1.5 ' >
+            <h1 className=' text-[1rem] font-bold  ' >
                 My Posts
             </h1>
             <div className=' w-full flex flex-wrap gap-2 ' >
@@ -323,15 +325,16 @@ const MyPosts = () => {
                                         Edit
                                     </button>
                                 </div>
+
                                 {/* ============= View Post Detail ========= */}
                                 {
                                     viewId === post._id && (
-                                        <div className=' w-[50vw] overflow-scroll flex flex-col  job h-full fixed top-0 left-75 p-2 rounded-2xl bg-[#ffffff] border ' >
-                                            <button onClick={() => setViewId(null)} className=' self-end cursor-pointer ' ><IoMdCloseCircle /></button>
+                                        <div className=' sm:w-[50vw] w-full overflow-scroll flex flex-col  job h-full fixed top-0 sm:left-75 left-0 sm:p-2 p-1 sm:rounded-2xl bg-[#ffffff] z-50  border ' >
+                                            <button onClick={() => setViewId(null)} className='text-2xl self-end cursor-pointer ' ><IoMdCloseCircle /></button>
                                             <div>
-                                                <div className="w-full min-h-screen bg-[#f8f3ff] flex justify-center p-6">
+                                                <div className="w-full min-h-screen bg-[#f8f3ff] flex justify-center sm:p-6 p-2 ">
 
-                                                    <div className="w-full max-w-5xl bg-white rounded-3xl shadow-lg p-8 flex flex-col gap-8">
+                                                    <div className="w-full max-w-5xl bg-white rounded-3xl shadow-lg sm:p-8 p-2 flex flex-col gap-8">
 
                                                         {/* Header */}
                                                         <div className="border-b pb-6">
@@ -467,12 +470,12 @@ const MyPosts = () => {
                                 {
                                     isEdit === post._id && (
 
-                                        <div className=' w-[50vw] overflow-scroll h-full fixed top-0 left-75 p-2 rounded-2xl bg-[#ffffff] border ' >
-                                            <button onClick={() => setIsEdit(null)} >Close</button>
-                                            <h1>Post Edit</h1>
+                                        <div className=' sm:w-[50vw] w-full flex flex-col overflow-scroll h-full fixed top-0 sm:left-75 left-0 p-2 sm:rounded-2xl bg-[#ffffff]  sm:z-0 z-50 ' >
+                                            <button onClick={() => setIsEdit(null)} className=' self-end text-2xl ' ><IoMdCloseCircle/> </button>
+                                            <h1 className=' text-[1.2rem] font-bold ' >Post Edit</h1>
                                             <form
                                                 onSubmit={jobPost}
-                                                className="w-full max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md flex flex-col gap-4">
+                                                className="w-full max-w-3xl mx-auto bg-white sm:p-6 p-2 sm:rounded-xl sm:shadow-md flex flex-col gap-4">
 
                                                 <input
                                                     type="text"
@@ -480,7 +483,7 @@ const MyPosts = () => {
                                                     placeholder="Job Title"
                                                     value={formData.jobtitle}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0 p-2 rounded"
                                                 />
 
                                                 <textarea
@@ -489,7 +492,7 @@ const MyPosts = () => {
                                                     rows="4"
                                                     value={formData.description}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded resize-none"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded resize-none"
                                                 />
 
                                                 <textarea
@@ -498,7 +501,7 @@ const MyPosts = () => {
                                                     rows="4"
                                                     value={formData.requirements}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded resize-none"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded resize-none"
                                                 />
 
                                                 <textarea
@@ -507,7 +510,7 @@ const MyPosts = () => {
                                                     rows="4"
                                                     value={formData.responsibilities}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded resize-none"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded resize-none"
                                                 />
 
                                                 <input
@@ -516,14 +519,14 @@ const MyPosts = () => {
                                                     placeholder="Location"
                                                     value={formData.location}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 />
 
                                                 <select
                                                     name="work_mode"
                                                     value={formData.work_mode}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 >
                                                     <option value="">Select Work Mode</option>
                                                     <option value="Remote">Remote</option>
@@ -537,7 +540,7 @@ const MyPosts = () => {
                                                     placeholder="Skills (comma separated)"
                                                     value={formData.skills}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 />
 
                                                 <input
@@ -546,7 +549,7 @@ const MyPosts = () => {
                                                     placeholder="Experience Required (Years)"
                                                     value={formData.experience_level}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 />
 
                                                 <input
@@ -555,14 +558,14 @@ const MyPosts = () => {
                                                     placeholder="Salary Range"
                                                     value={formData.salary_range}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 />
 
                                                 <select
                                                     name="jobtype"
                                                     value={formData.jobtype}
                                                     onChange={handleChange}
-                                                    className="border p-2 rounded"
+                                                    className="border border-[#943CF3] outline-0  p-2 rounded"
                                                 >
                                                     <option value="">Select Job Type</option>
                                                     <option value="Full-time">Full-time</option>
@@ -573,7 +576,7 @@ const MyPosts = () => {
 
                                                 <button
                                                     type="submit"
-                                                    className="bg-[#943CF3] text-white py-2 rounded hover:bg-purple-700"
+                                                    className="bg-[#943CF3] font-bold text-white py-2 rounded hover:bg-purple-700"
                                                 >
                                                     Post Job
                                                 </button>

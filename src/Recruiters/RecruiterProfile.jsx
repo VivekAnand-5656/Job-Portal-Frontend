@@ -3,7 +3,7 @@ import { AuthContext } from '../Context/AuthContext'
 import axios from 'axios'
 import { RiImageAddFill } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
-
+import { IoMdCloseCircle } from "react-icons/io";
 
 //   add logo krna hai ime 
 const RecruiterProfile = () => {
@@ -186,34 +186,47 @@ const RecruiterProfile = () => {
             {/* ===================== Edit Profile ================ */}
             {
                 isEdit && (
-                    <div className=' w-full h-full fixed job overflow-scroll top-0 bg-[#ffffff] border ' >
+                    <div className=' w-full h-full p-2 sm:p-0 flex sm:flex-col flex-col justify-center fixed job overflow-scroll top-0 bg-[#ffffff] border ' >
                         <button
                             onClick={() => setIsEdit(false)}
-                        >Close</button>
-                        <h1>Update Profile</h1>
-                        <form className=' flex flex-col  '
+                            className=' text-2xl self-end '
+                        ><IoMdCloseCircle/></button>
+                        <h1 className=' text-[1.2rem] font-bold ' >Update Profile</h1>
+                        <form className=' flex flex-col border border-[#943CF3] rounded  p-2 '
                             onSubmit={editProfile}
                         >
                             <input type="text" name='company' placeholder='Enter Company Name'
                                 value={formdata.company}
                                 onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
                             />
                             <input type="email" name='email' placeholder='Enter Email..'
                                 value={formdata.email}
                                 onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
                             />
                             <input type="text" name='websiteurl' placeholder='Website URL'
                                 value={formdata.websiteurl}
                                 onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
                             />
                             <textarea name="description"
                                 value={formdata.description}
                                 onChange={handleChange}
+                                placeholder='Summary.....'
+                                className=' border border-[#943CF3] p-2 rounded '
+
                             ></textarea>
-                            <input type="text" name='city' placeholder='City' value={formdata.city} onChange={handleChange} />
-                            <input type="text" name='state' placeholder='State' value={formdata.state} onChange={handleChange} />
-                            <input type="text" name='country' placeholder='Country' value={formdata.country} onChange={handleChange} />
-                            <button type='submit' >Update</button>
+                            <input type="text" name='city' placeholder='City' value={formdata.city} onChange={handleChange} 
+                            className=' border-b border-b-[#943CF3] p-2 rounded '
+                            />
+                            <input type="text" name='state' placeholder='State' value={formdata.state} onChange={handleChange} 
+                            className=' border-b border-b-[#943CF3] p-2 rounded '
+                            />
+                            <input type="text" name='country' placeholder='Country' value={formdata.country} onChange={handleChange} 
+                            className=' border-b border-b-[#943CF3] p-2 rounded '
+                            /> 
+                            <button type='submit' className=' bg-[#943CF3] p-2 text-white font-bold rounded  ' >Update</button>
                         </form>
 
                     </div>

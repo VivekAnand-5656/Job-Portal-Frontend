@@ -4,7 +4,7 @@ import { AuthContext } from '../Context/AuthContext'
 import { GiCancel } from "react-icons/gi";
 
 const AddProjects = () => {
-  const { token,showPro,setShowPro } = useContext(AuthContext)
+  const { token, showPro, setShowPro } = useContext(AuthContext)
 
   const [project, setProject] = useState({
     title: "",
@@ -58,10 +58,10 @@ const AddProjects = () => {
   }
 
   return (
-    <div className="w-[50%] bg-transparent min-h-screen flex flex-col  justify-center items-center  p-5">
-       <button 
-              onClick={()=>setShowPro(false)}
-              className=' self-end cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel/></button>
+    <div className="sm:w-[50%] w-full bg-transparent min-h-screen flex flex-col  justify-center items-center  p-5">
+      <button
+        onClick={() => setShowPro(false)}
+        className='text-2xl self-end cursor-pointer hover:text-[#ff0303]  transition-all duration-500 ease-in-out hover:scale-110 ' ><GiCancel /></button>
       <form
         onSubmit={handleSubmit}
         className="w-full h-full flex flex-col gap-1.5 max-w-2xl bg-white p-6 rounded-2xl shadow-md"

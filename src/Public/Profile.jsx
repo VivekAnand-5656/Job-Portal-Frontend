@@ -13,7 +13,7 @@ import UpdateEducation from '../Candidates/UpdateEducation';
 
 
 const Profile = () => {
-    const { token, showEdu, setShowEdu, showPro, showUpdateEdu, setShowUpdateEdu } = useContext(AuthContext)
+    const { token, showEdu, setShowEdu, showPro,setShowPro, showUpdateEdu, setShowUpdateEdu } = useContext(AuthContext)
     const navigate = useNavigate()
     const [profile, setProfile] = useState({})
 
@@ -321,7 +321,7 @@ const Profile = () => {
             {/* ================= Show Project ========= */}
             {
                 showPro ? (
-                    <div className='w-full fixed top-0  flex justify-center items-center right-0 ' >
+                    <div className='w-screen h-screen overflow-auto  bg-[#ffffff] fixed top-5 p-2  flex justify-center items-center right-0 ' >
                         <AddProjects />
                     </div>
                 ) : null

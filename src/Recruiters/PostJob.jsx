@@ -22,6 +22,7 @@ const PostJob = () => {
         })
     }
     const apibase = "https://job-portal-project-b2b0.onrender.com"
+
     // =========== Post Jobs =========
     const jobPost = async (e) => {
         e.preventDefault()
@@ -67,7 +68,7 @@ const PostJob = () => {
                     placeholder="Job Title"
                     value={formData.jobtitle}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <textarea
@@ -76,7 +77,7 @@ const PostJob = () => {
                     rows="4"
                     value={formData.description}
                     onChange={handleChange}
-                    className="border p-2 rounded resize-none"
+                    className="border border-[#943CF3] p-2 rounded resize-none"
                 />
 
                 <textarea
@@ -85,7 +86,7 @@ const PostJob = () => {
                     rows="4"
                     value={formData.requirements}
                     onChange={handleChange}
-                    className="border p-2 rounded resize-none"
+                    className="border border-[#943CF3] p-2 rounded resize-none"
                 />
 
                 <textarea
@@ -94,7 +95,7 @@ const PostJob = () => {
                     rows="4"
                     value={formData.responsibilities}
                     onChange={handleChange}
-                    className="border p-2 rounded resize-none"
+                    className="border border-[#943CF3] p-2 rounded resize-none"
                 />
 
                 <input
@@ -103,14 +104,14 @@ const PostJob = () => {
                     placeholder="Location"
                     value={formData.location}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <select
                     name="work_mode"
                     value={formData.work_mode}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 >
                     <option value="">Select Work Mode</option>
                     <option value="Remote">Remote</option>
@@ -124,7 +125,7 @@ const PostJob = () => {
                     placeholder="Skills (comma separated)"
                     value={formData.skills}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <input
@@ -133,7 +134,7 @@ const PostJob = () => {
                     placeholder="Experience Required (Years)"
                     value={formData.experience_level}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <input
@@ -142,14 +143,14 @@ const PostJob = () => {
                     placeholder="Salary Range"
                     value={formData.salary_range}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <select
                     name="jobtype"
                     value={formData.jobtype}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 >
                     <option value="">Select Job Type</option>
                     <option value="Full-time">Full-time</option>

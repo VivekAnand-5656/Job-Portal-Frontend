@@ -23,6 +23,7 @@ const Applicants = () => {
             console.log(`Error:- ${error}`)
         }
     }
+
     // =============== Update Status ==========
     const [candidateId,setCandidateId] = useState(null)
     const updateStatus = async (candidateId,canStatus)=>{
@@ -50,8 +51,7 @@ const Applicants = () => {
         }
     },[token])
     return (
-        <div>
-            <h1>Applicants</h1>
+        <div> 
             <div className="w-full p-4">
                 <h2 className="text-2xl font-bold mb-4">
                     Applicants ({applicants.length})
@@ -172,11 +172,11 @@ const Applicants = () => {
                                 )}
 
                                 {/* Buttons */}
-                                <div className="flex gap-3 mt-4">
+                                <div className="flex sm:gap-3 gap-1.5 mt-4 overflow-x-scroll job ">
                                     <a
                                         href={applicant.resume_url}
                                         target="_blank"
-                                        className="px-4 py-2 bg-blue-600 text-white rounded"
+                                        className="sm:px-4 sm:py-2 p-2 bg-blue-600 text-white rounded"
                                     >
                                         View Resume
                                     </a>
@@ -184,20 +184,20 @@ const Applicants = () => {
                                     <a
                                         href={applicant.linkedin_url}
                                         target="_blank"
-                                        className="px-4 py-2 bg-gray-800 text-white rounded"
+                                        className="sm:px-4 sm:py-2 p-2 text-center bg-gray-800 text-white rounded"
                                     >
                                         LinkedIn
                                     </a>
 
                                     <button 
                                     onClick={()=>updateStatus(applicant._id,"Shortlisted")}
-                                    className="px-4 py-2 bg-green-600 text-white rounded">
+                                    className="sm:px-4 sm:py-2 p-2 bg-green-600 text-white rounded">
                                         Shortlist
                                     </button>
 
                                     <button 
                                     onClick={()=>updateStatus(applicant._id,"Rejected")}
-                                    className="px-4 py-2 bg-red-600 text-white rounded">
+                                    className="sm:px-4 sm:py-2 p-2 bg-red-600 text-white rounded">
                                         Reject
                                     </button>
                                 </div>

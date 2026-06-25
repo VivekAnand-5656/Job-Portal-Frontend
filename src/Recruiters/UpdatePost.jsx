@@ -22,6 +22,7 @@ const UpdatePost = () => {
         })
     }
     const apibase = "https://job-portal-project-b2b0.onrender.com"
+
     // =========== Post Jobs =========
     const jobPost = async (e) => {
         e.preventDefault()
@@ -68,7 +69,7 @@ const UpdatePost = () => {
                     placeholder="Job Title"
                     value={formData.jobtitle}
                     onChange={handleChange}
-                    className="border p-2 rounded"
+                    className="border border-[#943CF3] p-2 rounded"
                 />
 
                 <textarea

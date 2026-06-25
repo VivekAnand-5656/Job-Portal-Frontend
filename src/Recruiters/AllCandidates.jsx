@@ -13,6 +13,7 @@ const AllCandidates = () => {
 
 
     const apibase = "https://job-portal-project-b2b0.onrender.com"
+
     // ======== Fetch Candidates ==========
     const fetchCandidates = async () => {
         try {
@@ -39,14 +40,14 @@ const AllCandidates = () => {
     }, [token])
     return (
         <div className=' w-full h-auto flex flex-col justify-center items-center ' >
-            <div className=' w-full flex flex-wrap justify-center items-center p-2 ' >
+            <div className=' w-full flex flex-wrap justify-center items-center p-2 gap-2 ' >
                 {
                     candidates?.length > 0 ? (
                         candidates.map((candidate, index) => (
 
                             <div
                                 key={index}
-                                className="w-64 h-[320px] bg-white rounded-2xl p-4 flex flex-col gap-3
+                                className="w-64 h-[320px] border border-[#943CF3] sm:border-none bg-white rounded-2xl p-4 flex flex-col gap-3
                                   shadow-md hover:shadow-xl hover:-translate-y-1
                                   hover:bg-[#943CF3] hover:text-white transition-all duration-300"
                             >
