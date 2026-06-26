@@ -5,6 +5,7 @@ import axios from 'axios'
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import clogo from '../assets/clogo.png'
+import { toast, Bounce } from 'react-toastify';
 
 const MyPosts = () => {
     const { token } = useContext(AuthContext)
@@ -64,7 +65,17 @@ const MyPosts = () => {
                     }
                 }
             )
-            alert("Job Updted Successfully")
+            toast.success('Post Updated ', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             fetchPosts()
             setIsEdit(null)
             setFormData({
@@ -167,7 +178,17 @@ const MyPosts = () => {
                     }
                 }
             )
-            alert("Post Deleted")
+            toast.success('Post Deleted Successfully ☑️', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             fetchPosts()
         } catch (error) {
             console.log(`Error:- ${error}`);
@@ -440,7 +461,7 @@ const MyPosts = () => {
                                                                         value={skil}
                                                                         onChange={(e) => setSkil(e.target.value)}
                                                                     />
-                                                                    <button className=' p-1.5 rounded bg-[#943CF3] '
+                                                                    <button className='text-white p-1.5 rounded bg-[#943CF3] '
                                                                         onClick={() => editSkill(post._id)}
                                                                     >Update Skills</button>
                                                                 </div>
@@ -471,7 +492,7 @@ const MyPosts = () => {
                                     isEdit === post._id && (
 
                                         <div className=' sm:w-[50vw] w-full flex flex-col overflow-scroll h-full fixed top-0 sm:left-75 left-0 p-2 sm:rounded-2xl bg-[#ffffff]  sm:z-0 z-50 ' >
-                                            <button onClick={() => setIsEdit(null)} className=' self-end text-2xl ' ><IoMdCloseCircle/> </button>
+                                            <button onClick={() => setIsEdit(null)} className=' self-end text-2xl ' ><IoMdCloseCircle /> </button>
                                             <h1 className=' text-[1.2rem] font-bold ' >Post Edit</h1>
                                             <form
                                                 onSubmit={jobPost}

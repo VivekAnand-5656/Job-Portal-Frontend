@@ -55,14 +55,24 @@ const RecruiterProfile = () => {
                     }
                 }
             )
-            alert("Profile Updated")
+            toast.success('Profile Updated Successfully ☑️', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             fetchProfile()
             setIsEdit(false)
         } catch (error) {
             console.log(`Error:- ${error}`)
         }
     }
-    
+
 
     useEffect(() => {
         if (token) {
@@ -75,11 +85,11 @@ const RecruiterProfile = () => {
             <div className="w-full min-h-screen bg-[#f8f3ff] p-6 flex flex-col items-center">
 
                 {/* Banner */}
-                <div className="w-full max-w-5xl h-52 bg-[#943CF3] rounded-3xl relative">
+                {/* <div className="w-full max-w-5xl h-52 bg-[#943CF3] rounded-3xl relative">
 
                    
 
-                </div>
+                </div> */}
 
                 {/* Main Card */}
                 <div className="w-full max-w-5xl bg-white mt-16 rounded-3xl shadow-lg p-8 flex flex-col gap-8">
@@ -186,13 +196,13 @@ const RecruiterProfile = () => {
             {/* ===================== Edit Profile ================ */}
             {
                 isEdit && (
-                    <div className=' w-full h-full p-2 sm:p-0 flex sm:flex-col flex-col justify-center fixed job overflow-scroll top-0 bg-[#ffffff] border ' >
+                    <div className=' w-full h-full p-2 sm:p-0 flex sm:flex-col flex-col justify-center items-center fixed job overflow-scroll top-0 bg-[#ffffff] border ' >
                         <button
                             onClick={() => setIsEdit(false)}
                             className=' text-2xl self-end '
-                        ><IoMdCloseCircle/></button>
+                        ><IoMdCloseCircle /></button>
                         <h1 className=' text-[1.2rem] font-bold ' >Update Profile</h1>
-                        <form className=' flex flex-col border border-[#943CF3] rounded  p-2 '
+                        <form className='sm:w-[30%] flex flex-col border border-[#943CF3] rounded sm:rounded-2xl sm:gap-2  p-2 '
                             onSubmit={editProfile}
                         >
                             <input type="text" name='company' placeholder='Enter Company Name'
@@ -217,15 +227,15 @@ const RecruiterProfile = () => {
                                 className=' border border-[#943CF3] p-2 rounded '
 
                             ></textarea>
-                            <input type="text" name='city' placeholder='City' value={formdata.city} onChange={handleChange} 
-                            className=' border-b border-b-[#943CF3] p-2 rounded '
+                            <input type="text" name='city' placeholder='City' value={formdata.city} onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
                             />
-                            <input type="text" name='state' placeholder='State' value={formdata.state} onChange={handleChange} 
-                            className=' border-b border-b-[#943CF3] p-2 rounded '
+                            <input type="text" name='state' placeholder='State' value={formdata.state} onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
                             />
-                            <input type="text" name='country' placeholder='Country' value={formdata.country} onChange={handleChange} 
-                            className=' border-b border-b-[#943CF3] p-2 rounded '
-                            /> 
+                            <input type="text" name='country' placeholder='Country' value={formdata.country} onChange={handleChange}
+                                className=' border-b border-b-[#943CF3] p-2 rounded '
+                            />
                             <button type='submit' className=' bg-[#943CF3] p-2 text-white font-bold rounded  ' >Update</button>
                         </form>
 

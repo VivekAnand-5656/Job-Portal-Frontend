@@ -5,8 +5,7 @@ import { FaUserLarge } from "react-icons/fa6";
 import { MdAddBox } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircle } from "react-icons/io";
-
-
+import { toast, Bounce } from 'react-toastify';
 
 
 const Navbar = () => {
@@ -17,6 +16,17 @@ const Navbar = () => {
   const logingout = () => {
     logout()
     navigate("/")
+    toast.success('Logout successfully ☑️', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
   }
   return (
     <div className=' w-full h-[10vh] flex  sm:justify-around justify-between sm:p-0 p-2 items-center bg-[#ffffff] ' >
@@ -39,7 +49,7 @@ const Navbar = () => {
 
           </ul>
         ) : (
-          <ul className={`${isHam?"flex":"hidden"} sm:flex sm:flex-row flex-col w-full sm:w-auto sm:h-full h-auto absolute sm:static top-10 sm:z-0 z-50 bg-[#ffffff] font-semibold justify-center items-center sm:gap-4 gap-1.5 sm:shadow-xl p-2 sm:rounded-2xl`} >
+          <ul className={`${isHam ? "flex" : "hidden"} sm:flex sm:flex-row flex-col w-full sm:w-auto sm:h-full h-auto absolute sm:static top-10 sm:z-0 z-50 bg-[#ffffff] font-semibold justify-center items-center sm:gap-4 gap-1.5 sm:shadow-xl p-2 sm:rounded-2xl`} >
             <li><NavLink to="recruiter" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >Home</NavLink></li>
             <li><NavLink to="myposts" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >My Posts</NavLink></li>
             <li><NavLink to="allcandidates" className={({ isActive }) => isActive ? " text-[#943CF3] " : " text-[#000000] "} >All Candidates</NavLink></li>

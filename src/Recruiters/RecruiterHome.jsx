@@ -26,8 +26,7 @@ const RecruiterHome = () => {
                         Authorization: `Bearer ${token}`
                     }
                 }
-            )
-            console.log(`Candidates:- ${response.data}`);
+            ) 
             setCandidates(response.data)
 
         } catch (error) {
@@ -74,8 +73,7 @@ const RecruiterHome = () => {
                         Authorization: `Bearer ${token}`
                     }
                 }
-            )
-            console.log(`Candidate by id:- ${response.data}`)
+            ) 
             setFindCandidate(response.data)
         } catch (error) {
             console.log(`Error:- ${error}`)
@@ -97,8 +95,7 @@ const RecruiterHome = () => {
                     }
                 }
             )
-            await fetchCandidates()
-            alert(`Candidate ${canStatus}`)
+            await fetchCandidates() 
         } catch (error) {
             console.log(`Error:- ${error}`)
         }
@@ -237,14 +234,14 @@ const RecruiterHome = () => {
                                         {/* =========== View Profile ============ */}
                                         {
                                             candidateId === candidate._id && (
-                                                <div className=' sm:w-[50vw] w-full overflow-scroll flex    flex-col  job h-full fixed top-0 sm:left-75 left-0 sm:p-2 p-1 sm:rounded-2xl bg-[#ffffff] z-50  ' >
+                                                <div className=' sm:w-[50vw] w-full overflow-scroll flex justify-center item-center flex-col  job h-full fixed top-0 sm:left-75 left-0 sm:p-2 p-1 sm:rounded-2xl bg-[#ffffff] z-50  ' >
                                                     <button onClick={() => setCandidateId(null)}
                                                         className=' self-end text-2xl '
                                                     ><IoMdCloseCircle/></button>
                                                     <h1 className=' text-[1.2rem] font-bold ' >Candidate Profile</h1>
                                                     <div
                                                         key={candidate._id}
-                                                        className="border sm:w-[80%] w-full rounded-lg p-4 mb-4 bg-white shadow-sm"
+                                                        className=" sm:w-[80%] w-full rounded-lg p-4 mb-4 bg-white shadow-sm"
                                                     >
                                                         {/* Header */}
                                                         <div className="flex justify-between items-start">

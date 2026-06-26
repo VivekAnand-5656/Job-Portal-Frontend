@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { toast, Bounce } from "react-toastify";
 
 const UpdateProfile = () => {
   const { token } = useContext(AuthContext)
@@ -52,11 +53,31 @@ const UpdateProfile = () => {
           }
         }
       )
-      alert("Profile Updated")
+      toast.success('Profile Updated Successfully ☑️', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       navigate("/profile")
     } catch (error) {
       console.log(error);
-      alert("Something went wrong");
+      toast.error('Something went wrong ', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 

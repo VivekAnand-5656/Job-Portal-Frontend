@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContext'
 import { FaRegSave } from "react-icons/fa";
+import { toast, Bounce } from 'react-toastify'
 
 
 const Home = () => {
@@ -67,7 +68,6 @@ const Home = () => {
           }
         }
       );
-      console.log("Job:- ", response.data);
 
       setJobdetail(response.data)
     } catch (error) {
@@ -85,7 +85,18 @@ const Home = () => {
           }
         }
       );
-      alert("job saved")
+      toast.success('Job Saved ☑️', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
     } catch (error) {
       console.log("Error:", error);
     }

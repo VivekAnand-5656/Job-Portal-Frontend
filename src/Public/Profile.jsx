@@ -257,7 +257,7 @@ const Profile = () => {
             } */}
             {
                 showEdu ? (
-                    <div className='w-screen h-screen overflow-auto  bg-[#ffffff] fixed top-5 p-2  flex justify-center items-center right-0 ' >
+                    <div className='w-screen h-screen overflow-scroll  bg-[#ffffff] fixed top-5 p-2  flex justify-center items-center right-0 ' >
                         <AddEducation    />
                     </div>
                 ) : null

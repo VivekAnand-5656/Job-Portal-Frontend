@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import { GiCancel } from "react-icons/gi";
-
+import { toast,Bounce } from 'react-toastify';
 
 const AddEducation = () => {
   const { token, showEdu, setShowEdu } = useContext(AuthContext)
@@ -50,8 +50,6 @@ const AddEducation = () => {
           }
         }
       )
-
-      console.log(response.data)
 
       setMessage("Education Added Successfully ✅")
 

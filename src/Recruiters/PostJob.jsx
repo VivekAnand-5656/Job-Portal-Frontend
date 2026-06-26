@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import axios from 'axios'
+import { toast, Bounce } from 'react-toastify'
 
 const PostJob = () => {
     const { token } = useContext(AuthContext)
@@ -38,7 +39,17 @@ const PostJob = () => {
                     }
                 }
             )
-            alert("Job Posted Successfully")
+            toast.success('Job Posted Successfully', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             setFormData({
                 jobtitle: "",
                 description: "",

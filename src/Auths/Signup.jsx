@@ -49,7 +49,7 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen flex sm:flex-row flex-col items-center justify-center bg-gray-100">
-      <div className=" w-[50%] flex justify-center items-center overflow-hidden " >
+      <div className=" w-[50%] sm:flex hidden justify-center items-center overflow-hidden " >
               <img src={signlogo} alt=""
               className=" w-full h-full "
               />
@@ -57,7 +57,7 @@ const Signup = () => {
 
       <form
         onSubmit={handleRegister}
-        className="bg-[#943CF3] h-[70%] text-white p-6 rounded-xl shadow-md sm:w-[30%] w-[70%] "
+        className="bg-[#943CF3] h-auto text-white p-6 rounded-xl shadow-md sm:w-[30%] w-[90%] "
       >
         <h2 className="text-2xl font-bold mb-4 text-center">
           Register

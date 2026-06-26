@@ -2,36 +2,47 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { toast, Bounce } from 'react-toastify'
 
 const ApplyJob = () => {
-    const {token,jobdetail} = useContext(AuthContext)
+    const { token, jobdetail } = useContext(AuthContext)
     const navigate = useNavigate()
     if (!jobdetail) {
-    return (
-      <div className="text-center mt-10 text-gray-500">
-        No Job Selected
-      </div>
-    )
-  }
+        return (
+            <div className="text-center mt-10 text-gray-500">
+                No Job Selected
+            </div>
+        )
+    }
 
-//   =========== Apply Job =======
+    //   =========== Apply Job =======
     const apibase = "https://job-portal-project-b2b0.onrender.com"
-    const applyJob = async (jobid)=>{
+    const applyJob = async (jobid) => {
         try {
             const response = await axios.put(`${apibase}/candidate/applyjob/${jobid}`,
                 {},
                 {
-                   headers:{
-                    Authorization:`Bearer ${token}`
-                   } 
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }
             )
-            alert("Applied Successfully")
+            toast.success('Applied Successfully ☑️', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             navigate("/home")
-            
+
         } catch (error) {
             console.log(`Error:- ${error}`);
-            
+
         }
     }
     return (
@@ -82,7 +93,7 @@ const ApplyJob = () => {
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">
                         Responsibilities
-                    </h3> 
+                    </h3>
                     <p className="text-gray-600 leading-relaxed">
                         {jobdetail?.responsibilities}
                     </p>
@@ -96,12 +107,12 @@ const ApplyJob = () => {
 
                     <div className="flex flex-wrap gap-2">
                         {
-                            jobdetail?.skills?.length > 0?(
-                                jobdetail?.skills?.map((skill)=>(
-                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">{skill}</span> 
+                            jobdetail?.skills?.length > 0 ? (
+                                jobdetail?.skills?.map((skill) => (
+                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">{skill}</span>
                                 ))
 
-                            ):(
+                            ) : (
                                 <p>No Skills Required</p>
                             )
                         }
@@ -121,7 +132,7 @@ const ApplyJob = () => {
                     </div>
 
                     <button
-                    onClick={()=>applyJob(jobdetail?._id)}
+                        onClick={() => applyJob(jobdetail?._id)}
                         className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition">
                         Apply Now
                     </button>

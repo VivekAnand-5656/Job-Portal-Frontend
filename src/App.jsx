@@ -18,6 +18,10 @@ import PostJob from './Recruiters/PostJob'
 import RecruiterProfile from './Recruiters/RecruiterProfile'
 import Applicants from './Recruiters/Applicants'
 import CandidateProfile from './Recruiters/CandidateProfile'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function App() {
 
@@ -49,6 +53,7 @@ function App() {
 
           </Routes>
         </BrowserRouter>
+        <ToastContainer/>
       </AuthProvider>
     </>
   )
