@@ -51,7 +51,7 @@ const Signup = () => {
     <div className="w-full h-screen flex sm:flex-row flex-col items-center justify-center bg-gray-100">
       <div className=" w-[50%] sm:flex hidden justify-center items-center overflow-hidden " >
               <img src={signlogo} alt=""
-              className=" w-full h-full "
+              className=" w-[80%] h-full "
               />
             </div>
 
@@ -118,7 +118,7 @@ const Signup = () => {
         >
           {loading ? "Registering...." : "Register"}
         </button>
-      <p>already have an account ? <span onClick={()=>navigate("/")} >Login Here</span></p>
+      <p>already have an account ? <span onClick={()=>navigate("/")} className=' cursor-pointer ' >Login Here</span></p>
       <p>{error}</p>
       </form>
     </div>
