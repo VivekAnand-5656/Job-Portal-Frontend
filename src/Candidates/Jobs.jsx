@@ -46,10 +46,10 @@ const Jobs = () => {
   const displayJobs = filterJob ?? jobs;
 
   return (
-    <div className="w-full sm:h-screen  flex sm:flex-row flex-col justify-between items-center">
+    <div className="w-full sm:h-screen bg-[#d7e1f7]  flex sm:flex-row flex-col justify-between items-center gap-2 p-2 ">
 
       {/* ---------------- LEFT FILTER ---------------- */}
-      <div className="sm:w-[15%] w-full sm:rounded-r-2xl text-white flex sm:flex-col flex-row overflow-scroll job p-2 sm:gap-4 gap-2 h-full bg-[#7c01ff]">
+      <div className="sm:w-[20%] w-full sm:rounded-[0.6rem] text-black flex sm:flex-col flex-row overflow-scroll job p-2 sm:gap-4 gap-2 h-full bg-[#fdfbff88]">
 
         <button
           className="cursor-pointer flex justify-center items-center font-semibold"
@@ -166,14 +166,14 @@ const Jobs = () => {
       </div>
 
       {/* ---------------- RIGHT SIDE ---------------- */}
-      <div className="sm:w-[85%] w-full  h-full p-2 flex flex-col gap-2">
+      <div className="sm:w-[85%] sm:rounded-[0.6rem] bg-[#fdfbff88] w-full  h-full p-2 flex flex-col gap-2">
 
-        <h1 className="sm:text-3xl  font-bold">
+        <h1 className="sm:text-2xl text-black font-bold">
           Find Jobs That Match Your Skills
         </h1>
 
         {/* ---------------- JOB LIST ---------------- */}
-        <div className="job w-full bg-[#d2a8fe] p-2 flex gap-2 flex-wrap rounded-2xl justify-center overflow-scroll">
+        <div className="job w-full p-2 flex gap-10 flex-wrap rounded-2xl justify-center overflow-scroll">
 
           {displayJobs.length === 0 ? (
             <h2 className="text-xl font-semibold p-4">
@@ -183,15 +183,15 @@ const Jobs = () => {
             displayJobs.map((job) => (
               <div
                 key={job._id}
-                className="w-80 bg-white rounded-xl flex flex-col justify-between cursor-pointer hover:scale-105 shadow-md p-4 transition"
+                className="w-70 bg-[#7C32CB] text-white rounded-xl flex flex-col justify-between cursor-pointer hover:scale-105 shadow-md p-4 transition"
               >
                 {/* HEADER */}
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">
+                    <h3 className="text-lg font-semibold">
                       {job.jobtitle}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-s">
                       {job.location}
                     </p>
                   </div>
@@ -202,7 +202,7 @@ const Jobs = () => {
                 </div>
 
                 {/* DESCRIPTION */}
-                <p className="text-sm text-gray-600 mt-3 line-clamp-2">
+                <p className="text-sm mt-3 line-clamp-2">
                   {job.description}
                 </p>
 
@@ -211,7 +211,7 @@ const Jobs = () => {
                   {job.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="text-xs bg-gray-100 px-2 py-1 rounded"
+                      className="text-xs bg-gray-100 text-purple-800 px-2 py-1 rounded"
                     >
                       {skill}
                     </span>
@@ -219,7 +219,7 @@ const Jobs = () => {
                 </div>
 
                 {/* EXPERIENCE + DATE */}
-                <div className="flex justify-between text-xs text-gray-500">
+                <div className="flex justify-between text-xs text-gray-100">
                   <span>💼 {job.experience_level} years</span>
                   <span>
                     📅{" "}
@@ -231,11 +231,11 @@ const Jobs = () => {
 
                 {/* SALARY + BUTTON */}
                 <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm font-medium text-green-600">
+                  <p className="text-sm font-medium text-[#fff200] ">
                     {job.salary_range.replace("per annum", "")}
                   </p>
 
-                  <button className="bg-purple-600 text-white px-3 py-1.5 rounded-lg text-sm hover:bg-purple-700">
+                  <button className="bg-[#050205] cursor-pointer text-white px-3 py-1.5 rounded-lg text-sm hover:bg-[#1a003f]">
                     Apply
                   </button>
                 </div>

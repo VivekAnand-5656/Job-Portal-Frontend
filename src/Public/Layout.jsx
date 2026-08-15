@@ -6,8 +6,8 @@ import Footer from './Footer'
 const Layout = () => {
   return ( 
     <>
-        <header><Navbar/></header>
-        <main><Outlet/></main>
+        <header className=' bg-[#d7e1f7] p-2 '><Navbar/></header>
+        <main className='  ' ><Outlet/></main>
         <footer><Footer/></footer>
     </>
   )

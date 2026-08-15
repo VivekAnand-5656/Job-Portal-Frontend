@@ -122,7 +122,7 @@ const Applicants = () => {
                                     <h4 className="font-semibold mb-2">Skills</h4>
 
                                     <div className="flex flex-wrap gap-2">
-                                        {applicant.skills.map((skill, index) => (
+                                        {applicant.skills?.map((skill, index) => (
                                             <span
                                                 key={index}
                                                 className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"

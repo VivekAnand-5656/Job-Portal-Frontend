@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { toast, Bounce } from "react-toastify";
 
+const inputClass = "w-full px-4 py-2.5 border border-gray-200 rounded-lg outline-none transition-all duration-200 focus:border-[#7C32CB] focus:ring-2 focus:ring-[#7C32CB]/20";
+const labelClass = "text-xs font-medium text-gray-500 mb-1 block";
+
 const UpdateProfile = () => {
   const { token } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -82,167 +85,158 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto sm:p-5 p-2 ">
-      <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
+    <div className="w-full min-h-screen bg-[#d7e1f7] p-4 md:p-6">
+      <div className="max-w-3xl mx-auto">
 
-      <form
-        onSubmit={handleSubmit}
-        className="w-full bg-white border border-[#943CF3] rounded-3xl p-6 sm:p-8 flex flex-wrap gap-4 shadow-xl"
-      >
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
+        <h2 className="text-2xl font-bold mb-6 text-black">Update profile</h2>
 
-        <input
-          type="text"
-          name="mobile"
-          placeholder="Mobile"
-          value={formData.mobile}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="headline"
-          placeholder="Headline"
-          value={formData.headline}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <textarea
-          name="bio"
-          placeholder="Bio"
-          value={formData.bio}
-          onChange={handleChange}
-          className="w-full min-h-[120px] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none resize-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="city"
-          placeholder="City"
-          value={formData.city}
-          onChange={handleChange}
-          className="w-full md:w-[31%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="state"
-          placeholder="State"
-          value={formData.state}
-          onChange={handleChange}
-          className="w-full md:w-[31%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="country"
-          placeholder="Country"
-          value={formData.country}
-          onChange={handleChange}
-          className="w-full md:w-[31%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="skills"
-          placeholder="HTML, CSS, React"
-          value={formData.skills}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="url"
-          name="portfolio_url"
-          placeholder="Portfolio URL"
-          value={formData.portfolio_url}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="url"
-          name="linkedin_url"
-          placeholder="LinkedIn URL"
-          value={formData.linkedin_url}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="url"
-          name="github_url"
-          placeholder="GitHub URL"
-          value={formData.github_url}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="preferred_job_type"
-          placeholder="Job Type"
-          value={formData.preferred_job_type}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="preferred_work_mode"
-          placeholder="Work Mode"
-          value={formData.preferred_work_mode}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="expected_salary"
-          placeholder="Expected Salary"
-          value={formData.expected_salary}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <input
-          type="text"
-          name="notice_period"
-          placeholder="Notice Period"
-          value={formData.notice_period}
-          onChange={handleChange}
-          className="w-full md:w-[48%] px-4 py-3 border-2 border-gray-200 rounded-xl outline-none transition-all duration-300 focus:border-[#943CF3] focus:ring-4 focus:ring-[#943CF3]/20 hover:border-[#943CF3]/50 shadow-sm"
-        />
-
-        <div className="w-full flex items-center">
-          <label className="flex items-center gap-3 text-gray-700 font-medium cursor-pointer">
-            <input
-              type="checkbox"
-              name="is_open_to_work"
-              checked={formData.is_open_to_work}
-              onChange={handleChange}
-              className="h-5 w-5 accent-[#943CF3]"
-            />
-            Open To Work
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-[#943CF3] text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300"
+        <form
+          onSubmit={handleSubmit}
+          className="w-full bg-white rounded-2xl shadow-sm overflow-hidden"
         >
-          Update Profile
-        </button>
-      </form>
+
+          {/* ===== Basic info ===== */}
+          <div className="p-6 flex flex-col gap-4 border-b border-gray-100">
+            <h3 className="text-sm font-semibold text-[#5B21B6] uppercase tracking-wide">Basic info</h3>
+
+            <div className="flex flex-wrap gap-4">
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Email</label>
+                <input type="email" name="email" placeholder="you@example.com"
+                  value={formData.email} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Mobile</label>
+                <input type="text" name="mobile" placeholder="+91 98765 43210"
+                  value={formData.mobile} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full">
+                <label className={labelClass}>Headline</label>
+                <input type="text" name="headline" placeholder="e.g. Full Stack Developer"
+                  value={formData.headline} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full">
+                <label className={labelClass}>Bio</label>
+                <textarea name="bio" placeholder="Tell recruiters a bit about yourself"
+                  value={formData.bio} onChange={handleChange}
+                  className={`${inputClass} min-h-[110px] resize-none`} />
+              </div>
+            </div>
+          </div>
+
+          {/* ===== Location ===== */}
+          <div className="p-6 flex flex-col gap-4 border-b border-gray-100">
+            <h3 className="text-sm font-semibold text-[#5B21B6] uppercase tracking-wide">Location</h3>
+
+            <div className="flex flex-wrap gap-4">
+              <div className="w-full md:w-[31%]">
+                <label className={labelClass}>City</label>
+                <input type="text" name="city" placeholder="City"
+                  value={formData.city} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[31%]">
+                <label className={labelClass}>State</label>
+                <input type="text" name="state" placeholder="State"
+                  value={formData.state} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[31%]">
+                <label className={labelClass}>Country</label>
+                <input type="text" name="country" placeholder="Country"
+                  value={formData.country} onChange={handleChange} className={inputClass} />
+              </div>
+            </div>
+          </div>
+
+          {/* ===== Skills & links ===== */}
+          <div className="p-6 flex flex-col gap-4 border-b border-gray-100">
+            <h3 className="text-sm font-semibold text-[#5B21B6] uppercase tracking-wide">Skills and links</h3>
+
+            <div className="flex flex-wrap gap-4">
+              <div className="w-full">
+                <label className={labelClass}>Skills (comma separated)</label>
+                <input type="text" name="skills" placeholder="HTML, CSS, React"
+                  value={formData.skills} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full">
+                <label className={labelClass}>Portfolio URL</label>
+                <input type="url" name="portfolio_url" placeholder="https://yourportfolio.com"
+                  value={formData.portfolio_url} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>LinkedIn URL</label>
+                <input type="url" name="linkedin_url" placeholder="https://linkedin.com/in/..."
+                  value={formData.linkedin_url} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>GitHub URL</label>
+                <input type="url" name="github_url" placeholder="https://github.com/..."
+                  value={formData.github_url} onChange={handleChange} className={inputClass} />
+              </div>
+            </div>
+          </div>
+
+          {/* ===== Job preferences ===== */}
+          <div className="p-6 flex flex-col gap-4">
+            <h3 className="text-sm font-semibold text-[#5B21B6] uppercase tracking-wide">Job preferences</h3>
+
+            <div className="flex flex-wrap gap-4">
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Job type</label>
+                <input type="text" name="preferred_job_type" placeholder="Full-time, Internship"
+                  value={formData.preferred_job_type} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Work mode</label>
+                <input type="text" name="preferred_work_mode" placeholder="Remote, Hybrid, On-site"
+                  value={formData.preferred_work_mode} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Expected salary</label>
+                <input type="text" name="expected_salary" placeholder="e.g. 6 LPA"
+                  value={formData.expected_salary} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full md:w-[48%]">
+                <label className={labelClass}>Notice period</label>
+                <input type="text" name="notice_period" placeholder="e.g. Immediate, 30 days"
+                  value={formData.notice_period} onChange={handleChange} className={inputClass} />
+              </div>
+
+              <div className="w-full flex items-center pt-1">
+                <label className="flex items-center gap-3 text-sm text-gray-700 font-medium cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="is_open_to_work"
+                    checked={formData.is_open_to_work}
+                    onChange={handleChange}
+                    className="h-4 w-4 accent-[#7C32CB]"
+                  />
+                  Open to work
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 pt-0">
+            <button
+              type="submit"
+              className="w-full bg-[#7C32CB] hover:bg-[#5B21B6] text-white py-3 rounded-lg font-medium transition-colors duration-200"
+            >
+              Update profile
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

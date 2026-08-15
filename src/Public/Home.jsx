@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import background from '../assets/background.png'
 import work from '../assets/work.png'
 import profile from '../assets/profile.png'
 import axios from 'axios'
@@ -110,41 +109,47 @@ const Home = () => {
   const displayjobs = searchJobs ?? jobs
   return (
     <>
-      <div className=' w-full flex flex-col justify-center items-center ' >
+      <div className=' w-full flex flex-col justify-center items-center  ' >
 
         {/* ----------- Top Banner ------------ */}
-        <div className='bg-[#e2c7ff] w-full  h-[90vh] flex flex-col gap-4 justify-center items-center  ' >
-          <div className=' text-center p-2 ' >
-            <h1 className=' sm:text-[3em] text-[2em] font-bold ' >Find The Job That Fits Your Life</h1>
-            <p>Discover opportunities, build your career and achieve your goals with JobHunt.</p>
-          </div>
-          <div className='bg-[#ffffffaa] w-[80%] flex justify-center items-center rounded-2xl  ' >
+        <div className='relative w-full min-h-[90vh] overflow-hidden   text-black flex flex-col gap-6 p-4 items-center justify-center ' >
+
+          <div className='absolute -top-16 -left-16 w-72 h-72 bg-[#7c01ff] rounded-full blur-[100px] opacity-30 pointer-events-none'></div>
+          <div className='absolute -bottom-16 -right-16 w-72 h-72 bg-[#943CF3] rounded-full blur-[100px] opacity-30 pointer-events-none'></div>
+
+          <div className='relative z-10 bg-white/10 backdrop-blur-md border border-white/20 w-[92%] sm:w-[55%] flex justify-between items-center rounded-full shadow-lg shadow-[#7c01ff]/20 p-1.5 ' >
             <input type="search" name="search" placeholder='Job title, skill, or company'
-              className='w-[90%]    p-2 outline-0 border-r-2 border-r-[#000000] '
+              className='w-[88%] bg-transparent p-2.5 outline-0 text-black placeholder-black '
               value={searchtxt}
               onChange={(e) => setSearchtxt(e.target.value)}
             />
-            <button className=' cursor-pointer  rounded-full w-[10%] h-full '
+            <button className=' cursor-pointer bg-linear-to-r from-[#7c01ff] to-[#943CF3] rounded-full w-11 h-11 flex items-center justify-center hover:scale-105 transition-all duration-300 shadow-md shrink-0 '
               onClick={() => jobSearch(searchtxt)}
             >🔍</button>
           </div>
-          <div>
-            <img src={background} alt="main" className='  w-63 h-63  ' />
+
+          <div className='relative z-10 text-center p-2 max-w-2xl' >
+            <h1 className='sm:text-[3.1em] text-[2em] font-extrabold leading-tight' >
+              Find The Job That{" "}
+              <span className='bg-linear-to-r from-[#c084fc] to-[#000000] bg-clip-text text-transparent'>Fits Your Life</span>
+            </h1>
+            <p className='text-black mt-2'>Discover opportunities, build your career and achieve your goals with JobHunt.</p>
           </div>
+
         </div>
 
         {/* -------------- Stats ---------------- */}
-        <div className=' w-full flex sm:flex-row flex-wrap sm:justify-center justify-center p-2 items-center gap-2 mb-4 ' >
-          <div className=' bg-[#fcf5ca]   rounded text-[0.9em] p-1.5 text-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out ' >
+        <div className=' w-full flex sm:flex-row flex-wrap sm:justify-center justify-center p-4 items-center gap-3 mt-6 mb-4 ' >
+          <div className=' bg-[#fcf5ca] border border-[#f0e2a3] rounded-full text-[0.85em] font-medium p-2 px-4 text-[#4a3b00] text-center cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300 ' >
             <p>💼 10,000+ Active Jobs</p>
           </div>
-          <div className=' bg-[#fcf5ca] rounded text-[0.9em] p-1.5 text-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out ' >
+          <div className=' bg-[#fcf5ca] border border-[#f0e2a3] rounded-full text-[0.85em] font-medium p-2 px-4 text-[#4a3b00] text-center cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300 ' >
             <p>🏢 2,500+ Companies</p>
           </div>
-          <div className=' bg-[#fcf5ca] rounded text-[0.9em] p-1.5 text-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out ' >
+          <div className=' bg-[#fcf5ca] border border-[#f0e2a3] rounded-full text-[0.85em] font-medium p-2 px-4 text-[#4a3b00] text-center cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300 ' >
             <p>👨‍💻 50,000+ Job Seekers</p>
           </div>
-          <div className=' bg-[#fcf5ca] rounded text-[0.9em] p-1.5 text-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out ' >
+          <div className=' bg-[#fcf5ca] border border-[#f0e2a3] rounded-full text-[0.85em] font-medium p-2 px-4 text-[#4a3b00] text-center cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300 ' >
             <p>🌍 Opportunities Across India</p>
           </div>
         </div>
@@ -152,10 +157,10 @@ const Home = () => {
 
         {/* -------------- Job Catagories ----------------- */}
 
-        <div className=' w-full bg-[#ffffff] flex justify-center items-center p-2 gap-4  flex-wrap ' >
+        <div className=' w-full bg-[#ffffff] flex justify-center items-center p-4 gap-3  flex-wrap ' >
           {
             jobCategory.map((catg, index) => (
-              <div key={index} className=' bg-[#7c01ff] text-white font-semibold rounded-2xl p-2 text-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out ' >
+              <div key={index} className=' bg-linear-to-r from-[#7c01ff] to-[#943CF3] text-white font-semibold rounded-full px-5 py-2.5 text-center text-sm cursor-pointer hover:shadow-lg hover:shadow-[#943CF3]/30 hover:-translate-y-0.5 transition-all duration-300 ' >
                 <p>{catg}</p>
               </div>
             ))
@@ -163,31 +168,31 @@ const Home = () => {
         </div>
 
         {/* -------------------  Jobs -----------  */}
-        <div className="w-full flex flex-wrap justify-center gap-6 p-8 bg-white">
+        <div className="w-full flex flex-wrap justify-center gap-6 p-8 bg-linear-to-b from-white to-[#faf5ff]">
           {
             displayjobs.length === 0 ? (
-              <h2 className="text-xl font-semibold p-4">
+              <h2 className="text-xl font-semibold p-4 text-gray-500">
                 No Jobs Found
               </h2>
             ) : (
               displayjobs.map((job, index) => (
                 <div
                   key={index}
-                  className="w-full sm:w-[300px] bg-[#ecdefb] p-4 rounded-2xl shadow-sm cursor-pointer hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-75 bg-white border border-[#ecdefb] p-5 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-[#943CF3]/10 hover:-translate-y-1 cursor-pointer transition-all duration-300"
                 >
                   <div className=' flex justify-between items-center ' >
-                    <h5 className="text-xl font-semibold mb-2">
+                    <h5 className="text-lg font-semibold mb-2">
                       {job.jobtitle}
                     </h5>
-                    <FaRegSave onClick={() => jobSave(job._id)} />
+                    <FaRegSave className='text-[#7c01ff] hover:scale-110 transition-transform cursor-pointer' onClick={() => jobSave(job._id)} />
                   </div>
 
                   <div className=" w-full flex justify-between items-center mb-2">
-                    <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                    <span className="bg-[#f0e6ff] text-[#7c01ff] px-2.5 py-1 rounded-full text-xs font-semibold">
                       {job.jobtype}
                     </span>
 
-                    <p className="text-indigo-600 font-semibold text-sm">
+                    <p className="text-[#7c01ff] font-bold text-sm">
                       {job.salary_range.replace("per annum", "")}
                     </p>
                   </div>
@@ -196,7 +201,7 @@ const Home = () => {
                     {job.work_mode} • {job.location}
                   </p>
 
-                  <div className="flex justify-between text-xs text-gray-500 mb-3">
+                  <div className="flex justify-between text-xs text-gray-500 mb-4">
                     <p>
                       Exp: <span className="text-gray-700">{job.experience_level}</span>
                     </p>
@@ -209,7 +214,7 @@ const Home = () => {
                       jobSearchById(job._id)
                     }
                     }
-                    className="w-full bg-black text-white py-2 rounded-xl text-sm hover:bg-gray-800 transition">
+                    className="w-full bg-linear-to-r from-[#1a0533] to-[#2d0a4e] text-white py-2.5 rounded-xl text-sm font-medium hover:from-[#7c01ff] hover:to-[#943CF3] transition-all duration-300">
                     Full Details
                   </button>
                 </div>
@@ -220,30 +225,30 @@ const Home = () => {
 
 
         {/* ---------------- How it works ----------- */}
-        <h1 className=' text-center w-full font-bold text-4xl bg-white ' >How It Works ?</h1>
+        <h1 className=' text-center w-full font-extrabold text-4xl bg-white pt-4 pb-2 ' >How It Works<span className='text-[#943CF3]'>?</span></h1>
         <div className='bg-[#ffffff] w-full sm:h-50  flex sm:flex-row flex-col gap-2 p-2  justify-center items-center ' >
           <div className=' sm:w-[50%] w-full h-50 sm:h-full  flex justify-center items-center ' >
             <img src={work} alt=""
               className=' sm:w-[30%] w-[70%] h-full  ' />
           </div>
-          <div className=' sm:w-[50%] w-full sm:p-0 p-2 bg-[#943CF3] sm:rounded-l-4xl rounded-2xl text-white font-semibold h-full flex justify-center items-center ' >
-            <ul className=' flex-col flex gap-5  ' >
-              <li className='border-l-2 border-l-[#ffee00] p-0.5 ' >🔎 Search Jobs — Find jobs based on skills & location</li>
-              <li className='border-l-2 border-l-[#ffee00] p-0.5 '>📝 Apply Easily — Submit your resume in one click</li>
-              <li className='border-l-2 border-l-[#ffee00] p-0.5 '>🎯 Get Hired — Connect directly with recruiters</li>
+          <div className=' sm:w-[50%] w-full sm:p-0 p-2 bg-linear-to-br from-[#7c01ff] to-[#4c0099] sm:rounded-l-4xl rounded-2xl text-white font-semibold h-full flex justify-center items-center ' >
+            <ul className=' flex-col flex gap-6  ' >
+              <li className='flex items-center gap-3' ><span className='bg-white/20 rounded-full w-8 h-8 flex items-center justify-center text-sm border border-white/30 shrink-0'>1</span>🔎 Search Jobs — Find jobs based on skills & location</li>
+              <li className='flex items-center gap-3' ><span className='bg-white/20 rounded-full w-8 h-8 flex items-center justify-center text-sm border border-white/30 shrink-0'>2</span>📝 Apply Easily — Submit your resume in one click</li>
+              <li className='flex items-center gap-3' ><span className='bg-white/20 rounded-full w-8 h-8 flex items-center justify-center text-sm border border-white/30 shrink-0'>3</span>🎯 Get Hired — Connect directly with recruiters</li>
             </ul>
           </div>
         </div>
 
 
         {/* ----------------------- Testimonials ---------------- */}
-        <div className=' bg-[#ffffff] w-full flex justify-center items-center flex-wrap gap-4 p-2 ' >
+        <div className=' bg-linear-to-b from-[#faf5ff] to-white w-full flex justify-center items-center flex-wrap gap-6 p-8 ' >
           {
             testimonials.map((content, index) => (
-              <div key={index} className=' bg-[#943CF3] text-white  w-[200px] h-[200px] flex flex-col justify-evenly rounded-2xl cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out items-center p-2  ' >
-                <img src={content.image} alt="" className=' w-[50%] h-[50%] rounded-full ' />
-                <p className=' font-semibold text-center ' >{content.feedback}</p>
-                <p>{content.name}</p>
+              <div key={index} className=' bg-white border border-[#ecdefb] shadow-md w-55 flex flex-col justify-evenly rounded-2xl cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 items-center gap-3 p-5  ' >
+                <img src={content.image} alt="" className=' w-16 h-16 rounded-full object-cover border-4 border-[#f0e6ff] ' />
+                <p className=' font-medium text-center text-sm text-gray-600 italic ' >"{content.feedback}"</p>
+                <p className='text-[#7c01ff] font-semibold text-sm'>{content.name}</p>
               </div>
             ))
           }

@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import logimg from '../assets/login.png'
+import { useNavigate } from "react-router-dom"; 
 
 import { toast, Bounce } from "react-toastify";
 
@@ -67,22 +66,14 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen flex sm:flex-row flex-col items-center justify-center bg-gray-100">
-      <div className=" w-[40%] sm:flex hidden justify-center items-center overflow-hidden " >
-        <img src={logimg} alt=""
-          className=" w-[80%] h-full "
-        />
-      </div>
-
+    <div className="w-full h-screen flex sm:flex-row flex-col items-center justify-center bg-[#d7e1f7] "> 
       <form
         onSubmit={handleLogin}
-        className="bg-[#943CF3] h-auto text-white p-6 rounded-xl shadow-md sm:w-[30%] w-[90%] "
+        className="h-auto w-[90%] sm:w-[30%] p-6 rounded-xl bg-[#ffffff] text-[#000000] border border-[#943CF3] shadow-[4px_-4px_12px_rgba(148,60,243,0.25),-4px_4px_12px_rgba(59,130,246,0.25)]"
       >
-        <h2 className="text-2xl text-[#ffffff] font-bold mb-4 text-center">
-          Welcome Back
-        </h2>
-        <p className=" text-justify " >Sign in to access your account, manage applications, track job opportunities, and continue your career journey.</p>
-
+        <h2 className="text-2xl text-[#000000] font-bold mb-4 text-center">
+          Login to <span className=' font-bold sm:text-2xl text-[1.3rem] ' >JOB<span className=' text-[#943CF3] ' >HUNT</span></span>
+        </h2> 
         {error && (
           <p className="text-red-500 text-sm mb-2">{error}</p>
         )}
@@ -94,7 +85,7 @@ const Login = () => {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 bg-[#ffffff] text-black placeholder:text-black   rounded mb-3 outline-none"
+          className="w-full p-2 text-black placeholder:text-black border-r-2 border-l-2 border-b-2 border-[#b675fb] rounded mb-3 outline-none"
         />
 
         {/* PASSWORD */}
@@ -104,18 +95,18 @@ const Login = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full p-2 bg-[#ffffff] text-black placeholder:text-black   rounded mb-3 outline-none"
+          className="w-full p-2 text-black placeholder:text-black border-r-2 border-l-2 border-b-2 border-[#b675fb] rounded mb-3 outline-none"
         />
 
         {/* BUTTON */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#ffffff] text-black p-2 rounded hover:bg-[#b675fb] hover:text-white font-bold cursor-pointer transition-all duration-500 ease-in-out "
+          className="w-full bg-[#00073b] text-white p-2 rounded hover:bg-[#7c01ff] hover:text-white font-bold cursor-pointer transition-all duration-500 ease-in-out "
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-        <p>Don't have account ? <span onClick={() => navigate("/signup")} className=" cursor-pointer " >Create Account</span> </p>
+        <p>Don't have account ? <span onClick={() => navigate("/signup")} className=" cursor-pointer text-[#b675fb] " >Create Account</span> </p>
       </form>
     </div>
   );
