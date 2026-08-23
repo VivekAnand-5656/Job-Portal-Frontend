@@ -2,146 +2,266 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 
-const statusConfig = {
-    Pending: { color: "bg-[#fdab13]", ring: "ring-[#fdab13]/30", step: 1 },
-    Shortlisted: { color: "bg-[#22c55e]", ring: "ring-[#22c55e]/30", step: 2 },
-    Rejected: { color: "bg-[#ef4444]", ring: "ring-[#ef4444]/30", step: 2 },
-};
-
 const AppliedJobs = () => {
-    const { token } = useContext(AuthContext)
-    const [jobs, setJobs] = useState([])
-    const apibase = "https://job-portal-project-b2b0.onrender.com"
+    const { token } = useContext(AuthContext);
+    const [jobs, setJobs] = useState([]);
+
+    const apibase = "https://job-portal-project-b2b0.onrender.com";
+
     const fetchAppliedJobs = async () => {
         try {
-            const response = await axios.get(`${apibase}/candidate/myaapliedjobs`,
+            const response = await axios.get(
+                `${apibase}/candidate/myaapliedjobs`,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            )
-            setJobs(response.data)
+            );
+
+            setJobs(response.data);
         } catch (error) {
-            console.log(`Error:- ${error}`);
+            console.log("Error:", error);
         }
-    }
+    };
+
     useEffect(() => {
         if (token) {
-            fetchAppliedJobs()
+            fetchAppliedJobs();
         }
-    }, [token])
+    }, [token]);
 
     return (
-        <div className="w-full min-h-screen p-4 md:p-6 bg-[#d7e1f7]">
+        <div className="w-full min-h-screen bg-[#d7e1f7] p-4 md:p-6">
 
-            <h1 className="text-2xl font-bold mb-6 text-black">
-                Applied Jobs
-            </h1>
+            {/* Header */}
+            <div className="mb-7">
+                <p className="text-sm font-medium text-[#7C32CB]">
+                    Career Dashboard
+                </p>
 
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mt-1">
+                    Applied Jobs
+                </h1>
+
+                <p className="text-sm text-gray-500 mt-1">
+                    Keep track of the jobs you've applied for.
+                </p>
+            </div>
+
+            {/* Jobs */}
             <div className="flex flex-col gap-5">
 
-                {
-                    jobs.length > 0 ? (
-                        jobs.map((job) => {
-                            const status = job.status || "Pending";
-                            const isRejected = status === "Rejected";
-                            const cfg = statusConfig[status] || statusConfig.Pending;
+                {jobs.length > 0 ? (
+                    jobs.map((application) => {
 
-                            return (
-                                <div key={job._id}
-                                    className="w-full bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col md:flex-row"
-                                >
-                                    {/* ============= Job Info ========== */}
-                                    <div className="w-full md:w-[62%] p-5 bg-gradient-to-br from-[#7C32CB] to-[#5B21B6] text-white relative">
+                        const job = application.job;
+                        const status = application.status;
 
-                                        <div className="flex justify-between items-start gap-3">
+                        return (
+                            <div
+                                key={application._id}
+                                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300"
+                            >
+
+                                {/* Top Section */}
+                                <div className="p-5 md:p-6 bg-gradient-to-r from-[#7C32CB] to-[#5B21B6] text-white">
+
+                                    <div className="flex justify-between items-start gap-4">
+
+                                        <div className="flex items-start gap-3">
+
+                                            {/* Logo */}
+                                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center overflow-hidden shrink-0">
+                                                {job.logo_url ? (
+                                                    <img
+                                                        src={job.logo_url}
+                                                        alt={job.jobtitle}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <span className="text-[#7C32CB] font-bold text-lg">
+                                                        {job.jobtitle?.charAt(0)}
+                                                    </span>
+                                                )}
+                                            </div>
+
                                             <div>
-                                                <h2 className="text-lg font-semibold leading-tight">
+                                                <h2 className="text-lg md:text-xl font-bold">
                                                     {job.jobtitle}
                                                 </h2>
-                                                <p className="text-sm text-white/70 mt-1 flex items-center gap-1">
-                                                    <span>📍</span>{job.location}
+
+                                                <p className="text-sm text-white/70 mt-1">
+                                                    📍 {job.location}
                                                 </p>
                                             </div>
 
-                                            <span className="text-xs font-medium bg-white/15 backdrop-blur px-3 py-1 rounded-full shrink-0">
-                                                {job.work_mode}
-                                            </span>
                                         </div>
 
-                                        <p className="text-sm text-white/85 mt-3 line-clamp-2">
-                                            {job.description}
-                                        </p>
+                                        {/* Work Mode */}
+                                        <span className="text-xs font-semibold bg-white/15 px-3 py-1.5 rounded-full shrink-0">
+                                            {job.work_mode}
+                                        </span>
 
-                                        <div className="flex flex-wrap gap-2 mt-3">
-                                            {(job.skills || []).map((skill, i) => (
-                                                <span
-                                                    key={i}
-                                                    className="text-[11px] font-medium bg-white/90 text-[#5B21B6] px-2.5 py-1 rounded-full"
-                                                >
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-
-                                        <div className="flex justify-between items-center mt-4 pt-3 border-t border-white/15 text-sm flex-wrap gap-2">
-                                            <span className="text-white/80">💼 {job.experience_level} yrs</span>
-                                            <span className="text-white/80">
-                                                📅 {job.createdAt
-                                                    ? new Date(job.createdAt).toLocaleDateString("en-IN")
-                                                    : "N/A"}
-                                            </span>
-                                            <span className="font-semibold text-[#FCD34D]">
-                                                {job.salary_range}
-                                            </span>
-                                        </div>
                                     </div>
 
-                                    {/* ============== Application Tracking =========== */}
-                                    <div className="w-full md:w-[38%] p-5 flex flex-col justify-center bg-[#faf9fc]">
+                                    {/* Job Info */}
+                                    <div className="flex flex-wrap gap-2 mt-5">
 
-                                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
-                                            Track application
-                                        </p>
+                                        <span className="text-xs bg-white/15 px-3 py-1.5 rounded-full">
+                                            💼 {job.jobtype}
+                                        </span>
 
-                                        <div className="flex items-center">
-                                            {/* Step 1 - Applied */}
-                                            <div className="flex flex-col items-center">
-                                                <div className="w-9 h-9 rounded-full bg-[#7C32CB] text-white flex items-center justify-center text-xs font-bold ring-4 ring-[#7C32CB]/20">
-                                                    ✓
-                                                </div>
-                                                <span className="text-[11px] text-gray-500 mt-1">Applied</span>
-                                            </div>
+                                        <span className="text-xs bg-white/15 px-3 py-1.5 rounded-full">
+                                            🎯 {job.experience_level} yrs
+                                        </span>
 
-                                            {/* Connector */}
-                                            <div className={`flex-1 h-[3px] mx-2 rounded ${cfg.step >= 2 ? cfg.color : "bg-gray-200"}`} />
+                                        <span className="text-xs bg-white/15 px-3 py-1.5 rounded-full">
+                                            💰 {job.salary_range}
+                                        </span>
 
-                                            {/* Step 2 - Current status */}
-                                            <div className="flex flex-col items-center">
-                                                <div className={`w-9 h-9 rounded-full text-white flex items-center justify-center text-xs font-bold ring-4 ${cfg.color} ${cfg.ring}`}>
-                                                    {isRejected ? "✕" : status === "Shortlisted" ? "✓" : "…"} 
-                                                </div>
-                                                <span className="text-[11px] text-gray-500 mt-1">{status}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className={`mt-5 text-sm font-medium px-3 py-2 rounded-lg text-center ${
-                                            isRejected ? "bg-red-50 text-red-600" :
-                                            status === "Shortlisted" ? "bg-green-50 text-green-600" :
-                                            "bg-amber-50 text-amber-600"
-                                        }`}>
-                                            { status === "Shortlisted" ? "You're shortlisted 🎉" :
-                                             "Awaiting recruiter response"}
-                                        </div>
                                     </div>
+
                                 </div>
-                            )
-                        })
-                    ) : (
-                        <p className="text-black">Not Jobs Applied</p>
-                    )
-                }
+
+                                {/* Bottom Section */}
+                                <div className="p-5 md:p-6">
+
+                                    <div className="flex flex-col md:flex-row gap-6">
+
+                                        {/* Description */}
+                                        <div className="flex-1">
+
+                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                                                About this role
+                                            </p>
+
+                                            <p className="text-sm text-gray-600 leading-6">
+                                                {job.description}
+                                            </p>
+
+                                            {/* Skills */}
+                                            <div className="mt-4">
+
+                                                <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                                                    Skills
+                                                </p>
+
+                                                <div className="flex flex-wrap gap-2">
+
+                                                    {(job.skills || []).slice(0, 8).map(
+                                                        (skill, index) => (
+                                                            <span
+                                                                key={index}
+                                                                className="text-xs font-medium text-[#5B21B6] bg-[#f1e9ff] px-3 py-1.5 rounded-full"
+                                                            >
+                                                                {skill}
+                                                            </span>
+                                                        )
+                                                    )}
+
+                                                    {job.skills?.length > 8 && (
+                                                        <span className="text-xs text-gray-500 px-2 py-1.5">
+                                                            +{job.skills.length - 8} more
+                                                        </span>
+                                                    )}
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        {/* Application Status */}
+                                        <div className="w-full md:w-[280px] bg-[#faf9fc] rounded-xl p-4 border border-gray-100">
+
+                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                                                Application Status
+                                            </p>
+
+                                            {/* Status */}
+                                            <div className="flex items-center gap-3 mt-4">
+
+                                                <div className="w-10 h-10 rounded-full bg-[#22c55e]/10 flex items-center justify-center">
+                                                    <div className="w-5 h-5 rounded-full bg-[#22c55e] flex items-center justify-center text-white text-xs">
+                                                        ✓
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <p className="text-sm font-bold text-gray-800 capitalize">
+                                                        {status}
+                                                    </p>
+
+                                                    <p className="text-xs text-gray-400">
+                                                        Application submitted
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                            {/* Line */}
+                                            <div className="flex items-center mt-5">
+
+                                                <div className="w-3 h-3 rounded-full bg-[#7C32CB]" />
+
+                                                <div className="flex-1 h-[2px] bg-[#7C32CB]" />
+
+                                                <div className="w-3 h-3 rounded-full bg-[#7C32CB]" />
+
+                                            </div>
+
+                                            <div className="flex justify-between text-[11px] text-gray-400 mt-2">
+                                                <span>Applied</span>
+                                                <span>Recruiter Review</span>
+                                            </div>
+
+                                            {/* Applied Date */}
+                                            <div className="mt-5 pt-4 border-t border-gray-200">
+
+                                                <p className="text-xs text-gray-400">
+                                                    Applied on
+                                                </p>
+
+                                                <p className="text-sm font-semibold text-gray-700 mt-1">
+                                                    {application.applied_at
+                                                        ? new Date(
+                                                              application.applied_at
+                                                          ).toLocaleDateString(
+                                                              "en-IN",
+                                                              {
+                                                                  day: "2-digit",
+                                                                  month: "short",
+                                                                  year: "numeric",
+                                                              }
+                                                          )
+                                                        : "N/A"}
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div className="bg-white rounded-2xl p-10 text-center shadow-sm">
+                        <div className="text-4xl mb-3">📋</div>
+
+                        <h2 className="text-lg font-bold text-gray-800">
+                            No Jobs Applied
+                        </h2>
+
+                        <p className="text-sm text-gray-500 mt-1">
+                            Your applied jobs will appear here.
+                        </p>
+                    </div>
+                )}
 
             </div>
         </div>

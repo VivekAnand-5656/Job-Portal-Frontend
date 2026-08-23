@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +17,7 @@ const ApplyJob = () => {
 
     //   =========== Apply Job =======
     const apibase = "https://job-portal-project-b2b0.onrender.com"
+    const [isApply, setIsApply] = useState("")
 
     const applyJob = async (jobid) => {
         try {
@@ -30,7 +31,21 @@ const ApplyJob = () => {
                     }
                 }
             );
-
+            if (response.data.is_applied === true) {
+                setIsApply(true)
+                toast.error("Already applied this job !", {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                }); 
+                return
+            }
             console.log("Apply response:", response.data);
 
             toast.success("Applied Successfully ☑️", {
@@ -62,8 +77,11 @@ const ApplyJob = () => {
                     theme: "colored"
                 }
             );
+        } finally{
+            navigate('/home')
         }
     };
+
 
     return (
         <div className="w-full min-h-screen bg-[#d7e1f7] p-4 md:p-6">
